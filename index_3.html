@@ -1,0 +1,2398 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<!-- ============================================================
+     DE MAANDCODE
+     Normaal vraag je Claude om een nieuw bestand met een nieuwe
+     code erin, dan hoef je hier niks te doen.
+     Wil je het toch zelf: zet het woord tussen de aanhalingstekens.
+     Twee codes mag ook: ['zonnebloem', 'kaneelstok']
+     ============================================================ -->
+<script>window.MAANDCODES = ['kaneelstok'];</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maandmaatje</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#15006b;
+  --goud:#f4b440;
+  --goud-diep:#d9971f;
+  --mauve:#bca8c3;
+  --mint-licht:#d7f7eb;
+  --mint:#b1dfcd;
+  --roze:#f2cdd7;
+  --grijs:#6b6580;
+  --grijs-licht:#9b95ad;
+  --wit:#ffffff;
+  --wolk:#f7f4fa;
+  --r-groot:28px;
+  --r-mid:20px;
+  --r-klein:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Quicksand',system-ui,-apple-system,sans-serif;
+  background:var(--mint-licht);
+  color:var(--navy);
+  -webkit-font-smoothing:antialiased;
+  padding:0 0 40px;
+}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input{font-family:inherit}
+
+/* ---------- schil ---------- */
+.schil{max-width:1080px;margin:0 auto;padding:18px 18px 0}
+.kop{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;flex-wrap:wrap;margin-bottom:16px;
+}
+.stapjes{display:flex;align-items:center;gap:7px}
+.stip{width:9px;height:9px;border-radius:50%;background:#ffffff;opacity:.75}
+.stip.klaar{background:var(--mint);opacity:1}
+.stip.nu{background:var(--goud);opacity:1;width:24px;border-radius:6px}
+.stap-label{font-size:.82rem;font-weight:600;color:var(--grijs);letter-spacing:.02em}
+.tijd{
+  font-size:.8rem;font-weight:600;color:var(--grijs);
+  background:#fff;padding:7px 14px;border-radius:999px;
+}
+.kop-rechts{display:flex;align-items:center;gap:8px}
+.hulp-knop{cursor:pointer;color:var(--grijs)}
+.hulp-knop:hover{color:var(--navy)}
+.hulp-kort{display:none}
+@media(max-width:560px){
+  .hulp-lang{display:none}
+  .hulp-kort{display:inline;font-weight:700}
+  .hulp-knop{padding:7px 13px}
+}
+.uitleg-stap{
+  display:flex;gap:12px;text-align:left;align-items:flex-start;
+  padding:11px 0;border-bottom:1px solid rgba(21,0,107,.06);
+}
+.uitleg-stap:last-of-type{border-bottom:none}
+.uitleg-nr{
+  flex:0 0 auto;width:24px;height:24px;border-radius:50%;
+  background:var(--mint);color:var(--navy);
+  font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;
+}
+.uitleg-tekst{font-size:.88rem;font-weight:600;color:var(--navy);line-height:1.45}
+.uitleg-tekst small{display:block;font-weight:500;color:var(--grijs);font-size:.82rem;margin-top:2px}
+
+/* ---------- hoofdkaart ---------- */
+.kaart{
+  background:var(--wit);border-radius:var(--r-groot);
+  box-shadow:0 10px 30px rgba(21,0,107,.07);
+  padding:26px 22px 22px;
+}
+.vraag{font-size:1.02rem;font-weight:600;color:var(--grijs);text-align:center}
+.teller{
+  display:block;text-align:center;font-size:.78rem;font-weight:600;
+  color:var(--grijs-licht);margin-top:5px;
+}
+
+/* briefje */
+.briefje{
+  margin:20px auto 24px;max-width:520px;
+  background:#fff;border-radius:8px 14px 9px 12px;
+  padding:24px 22px 20px;text-align:center;position:relative;
+  transform:rotate(-.8deg);
+  box-shadow:0 6px 18px rgba(21,0,107,.13), 0 0 0 1px rgba(21,0,107,.05);
+}
+.briefje .gebied{background:var(--wolk)}
+.briefje-tekst{font-size:1.45rem;font-weight:700;line-height:1.3;color:var(--navy)}
+.gebied{
+  display:inline-flex;align-items:center;gap:7px;margin-top:12px;
+  font-size:.78rem;font-weight:600;color:var(--grijs);
+  background:#fff;padding:5px 12px;border-radius:999px;
+}
+.gebied .bol{width:9px;height:9px;border-radius:50%}
+
+/* bakjes */
+.bakjes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:720px){.bakjes{grid-template-columns:1fr}}
+.bak{
+  border-radius:var(--r-mid);padding:16px 14px;text-align:left;
+  transition:transform .12s ease, box-shadow .12s ease;
+  display:flex;flex-direction:column;gap:4px;min-height:118px;
+  position:relative;overflow:hidden;
+}
+.bak:hover{transform:translateY(-2px)}
+.bak:active{transform:translateY(1px)}
+.bak.dag{background:var(--mint);box-shadow:0 4px 0 #93cbb4}
+.bak.tetris{background:var(--roze);box-shadow:0 4px 0 #ddaab8}
+.bak.doel{background:var(--mauve);box-shadow:0 4px 0 #9d87a6}
+.bak-titel{font-size:1.05rem;font-weight:700;line-height:1.25}
+.bak-sub{font-size:.8rem;font-weight:500;color:rgba(21,0,107,.62);line-height:1.35}
+.bak-teller{
+  margin-top:auto;font-size:.76rem;font-weight:700;
+  display:flex;align-items:center;gap:6px;color:rgba(21,0,107,.7);
+}
+.vakjes{display:flex;gap:3px}
+.vakje{width:8px;height:8px;border-radius:2px;background:rgba(255,255,255,.75)}
+.vakje.vol{background:var(--navy);opacity:.55}
+.bak.is-vol{opacity:.7}
+.bak.is-dicht{opacity:.62}
+.genoeg{
+  margin-top:10px;align-self:flex-start;
+  font-size:.72rem;font-weight:700;letter-spacing:.01em;
+  padding:6px 12px;border-radius:999px;
+  background:rgba(255,255,255,.7);color:rgba(21,0,107,.62);
+}
+.genoeg:hover{background:#fff;color:var(--navy)}
+.genoeg.aan{background:var(--navy);color:#fff}
+
+.totaal-regel{
+  text-align:center;margin-top:14px;
+  font-size:.79rem;font-weight:600;color:var(--grijs-licht);
+}
+.totaal-regel b{color:var(--grijs);font-weight:700}
+.uitweg{
+  display:block;margin:10px auto 0;font-size:.86rem;font-weight:600;
+  color:var(--grijs);padding:9px 18px;border-radius:999px;background:var(--wolk);
+}
+.uitweg:hover{color:var(--navy)}
+
+.onderbalk{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:10px;flex-wrap:wrap;margin-top:16px;
+}
+.klein-knopje{
+  font-size:.82rem;font-weight:600;color:var(--grijs);
+  padding:8px 14px;border-radius:999px;background:#fff;
+  box-shadow:0 2px 0 rgba(21,0,107,.06);
+}
+.klein-knopje:hover{color:var(--navy)}
+.klein-knopje[disabled]{opacity:.35;cursor:default}
+
+/* ---------- frequentie-overlay ---------- */
+.sluier{
+  position:fixed;inset:0;background:rgba(21,0,107,.34);
+  display:flex;align-items:center;justify-content:center;padding:20px;z-index:40;
+}
+.sluier[hidden]{display:none}
+.dialoog{
+  background:#fff;border-radius:var(--r-groot);padding:26px 22px 22px;
+  max-width:440px;width:100%;text-align:center;
+  box-shadow:0 20px 50px rgba(21,0,107,.2);
+}
+.dialoog h3{font-size:1.2rem;font-weight:700;margin-bottom:6px}
+.dialoog p{font-size:.88rem;color:var(--grijs);font-weight:500;line-height:1.5}
+.freq-rij{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;justify-content:center}
+.freq{
+  flex:1 1 100px;background:var(--roze);border-radius:var(--r-klein);
+  padding:14px 10px;font-weight:700;font-size:.95rem;
+  box-shadow:0 4px 0 #ddaab8;
+}
+.freq small{display:block;font-size:.72rem;font-weight:600;color:rgba(21,0,107,.6);margin-top:3px}
+.freq:hover{transform:translateY(-2px)}
+
+.wissel-lijst{display:flex;flex-direction:column;gap:8px;margin-top:18px;text-align:left}
+.wissel-item{
+  background:var(--wolk);border-radius:var(--r-klein);padding:12px 14px;
+  font-weight:600;font-size:.92rem;display:flex;justify-content:space-between;align-items:center;gap:10px;
+}
+.wissel-item span.ruil{font-size:.76rem;font-weight:700;color:var(--goud-diep)}
+.wissel-item:hover{background:var(--mint-licht)}
+
+/* ---------- ideeënlade ---------- */
+.lade{margin-top:16px}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.tab{
+  font-size:.78rem;font-weight:600;padding:7px 13px;border-radius:999px;
+  background:var(--wolk);color:var(--grijs);
+}
+.tab.actief{background:var(--navy);color:#fff}
+.ideeen{display:flex;gap:8px;flex-wrap:wrap}
+.idee{
+  font-size:.85rem;font-weight:600;padding:9px 14px;border-radius:999px;
+  background:#fff;box-shadow:0 2px 0 rgba(21,0,107,.07);color:var(--navy);
+}
+.idee:hover{background:var(--mint-licht)}
+.idee.toegevoegd{background:var(--mint);opacity:.6;cursor:default}
+
+/* ---------- sfeer ---------- */
+.sferen{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+@media(max-width:820px){.sferen{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.sferen{grid-template-columns:1fr;gap:9px}}
+.sfeer{
+  background:#fff;border-radius:var(--r-mid);padding:16px 15px;text-align:left;
+  box-shadow:0 2px 6px rgba(21,0,107,.08), 0 0 0 2px rgba(21,0,107,.05);
+  transition:transform .12s ease, box-shadow .12s ease;
+  display:flex;flex-direction:column;gap:5px;min-height:104px;
+}
+.sfeer:hover{transform:translateY(-2px)}
+.sfeer-naam{font-size:1.02rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.sfeer-naam .bol{
+  width:11px;height:11px;border-radius:50%;flex:0 0 auto;
+  box-shadow:inset 0 0 0 1px rgba(21,0,107,.18);
+}
+.sfeer-regel{font-size:.82rem;font-weight:500;color:var(--grijs);line-height:1.4}
+.sfeer.aan{box-shadow:0 4px 12px rgba(21,0,107,.13), 0 0 0 3px var(--navy)}
+.sfeer.aan .sfeer-naam::after{content:'✓';margin-left:auto;font-size:.9rem;color:var(--goud-diep)}
+.sfeer-chip{
+  display:inline-flex;align-items:center;gap:8px;margin-top:10px;
+  font-size:.78rem;font-weight:600;color:var(--grijs);
+  background:var(--wolk);padding:6px 13px;border-radius:999px;
+}
+.sfeer-chip button{font-size:.76rem;font-weight:700;color:var(--goud-diep);text-decoration:underline;text-underline-offset:2px}
+@media(max-width:480px){
+  .sfeer{min-height:0;padding:12px 14px;gap:2px}
+  .sfeer-naam{font-size:.96rem}
+  .sfeer-regel{font-size:.79rem}
+}
+.maandwoord-groot{
+  font-size:1.05rem;font-weight:700;color:var(--navy);
+  letter-spacing:.06em;text-transform:uppercase;margin-top:6px;
+}
+
+/* ---------- braindump ---------- */
+.prompt{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  background:var(--mint-licht);border-radius:var(--r-mid);
+  padding:14px 16px;margin:18px 0 14px;
+}
+.prompt-tekst{font-size:.98rem;font-weight:700;color:var(--navy);line-height:1.35}
+.dump-uitleg{
+  font-size:.78rem;font-weight:500;color:var(--grijs-licht);
+  margin:0 0 14px;padding-left:4px;line-height:1.45;
+}
+.briefjes{display:flex;gap:11px;flex-wrap:wrap;margin-top:8px;padding:2px 0 4px}
+.brief-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.85rem;font-weight:600;padding:9px 10px 9px 12px;
+  border-radius:5px 9px 6px 8px;
+  background:#fff;color:var(--navy);
+  box-shadow:0 2px 5px rgba(21,0,107,.11), 0 0 0 1px rgba(21,0,107,.05);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.brief-chip:nth-child(4n+1){transform:rotate(-1.4deg)}
+.brief-chip:nth-child(4n+2){transform:rotate(.9deg)}
+.brief-chip:nth-child(4n+3){transform:rotate(-.5deg)}
+.brief-chip:nth-child(4n+4){transform:rotate(1.6deg)}
+.brief-chip:hover{transform:rotate(0deg);box-shadow:0 4px 10px rgba(21,0,107,.14), 0 0 0 1px rgba(21,0,107,.05)}
+.brief-chip .bol{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+.brief-chip .weg-x{
+  font-size:.9rem;font-weight:700;color:var(--grijs-licht);
+  padding:0 4px;border-radius:50%;line-height:1;
+}
+.brief-chip .weg-x:hover{color:var(--navy)}
+.brief-chip.kies:hover{background:var(--mint-licht);cursor:pointer}
+.brief-chip.losgelaten{opacity:.55}
+.brief-chip.losgelaten span:first-child{text-decoration:line-through}
+.brief-mee{
+  font-size:.66rem;font-weight:700;color:var(--grijs-licht);
+  letter-spacing:.04em;margin-left:2px;
+}
+.groep{margin-bottom:16px}
+.groep-kop{
+  display:flex;align-items:center;gap:8px;margin-bottom:9px;
+  font-size:.84rem;font-weight:700;color:var(--grijs);
+}
+.groep-kop .bol{width:10px;height:10px;border-radius:50%}
+.idee .idee-cat{display:block;font-size:.68rem;font-weight:600;color:var(--grijs-licht);margin-top:2px}
+.lade-onder{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:10px;flex-wrap:wrap;margin-top:14px;
+}
+.lade-mini{font-size:.76rem;font-weight:600;color:var(--grijs-licht)}
+.geen-treffer{font-size:.88rem;font-weight:600;color:var(--grijs);padding:4px 0}
+.eigen{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.eigen input{
+  flex:1 1 220px;border:none;background:var(--wolk);border-radius:999px;
+  padding:12px 18px;font-size:.92rem;font-weight:600;color:var(--navy);outline:none;
+}
+.eigen input::placeholder{color:var(--grijs-licht);font-weight:500}
+.knop-goud{
+  background:var(--goud);color:#fff;font-weight:700;font-size:.92rem;
+  padding:12px 22px;border-radius:999px;box-shadow:0 4px 0 var(--goud-diep);
+}
+.knop-goud:hover{transform:translateY(-1px)}
+.knop-goud:active{transform:translateY(2px);box-shadow:0 2px 0 var(--goud-diep)}
+
+/* ---------- eindscherm ---------- */
+.eind-kop{text-align:center;margin-bottom:20px}
+.eind-kop h2{font-size:1.55rem;font-weight:700;line-height:1.25}
+.eind-kop p{font-size:.95rem;color:var(--grijs);font-weight:500;margin-top:8px}
+.paneel{
+  background:#fff;border-radius:var(--r-groot);padding:22px 20px;
+  box-shadow:0 10px 30px rgba(21,0,107,.07);margin-bottom:16px;
+}
+.paneel-kop{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.paneel-kop h3{font-size:1.15rem;font-weight:700}
+.paneel-kop .mini{font-size:.78rem;font-weight:600;color:var(--grijs-licht)}
+.regel{
+  display:flex;align-items:center;gap:12px;padding:10px 0;
+  border-bottom:1px solid rgba(21,0,107,.06);
+}
+.regel:last-child{border-bottom:none}
+.regel .naam{font-weight:600;font-size:.95rem;flex:1;min-width:120px}
+.dagvakjes{display:flex;gap:2px;max-width:260px;flex:0 0 auto}
+.dagvakje{width:6px;height:15px;border-radius:2px;background:rgba(177,223,205,.6)}
+@media(max-width:620px){.dagvakjes{display:none}}
+.weg{
+  font-size:.72rem;font-weight:700;color:var(--grijs-licht);
+  padding:4px 9px;border-radius:999px;
+}
+.weg:hover{background:var(--wolk);color:var(--navy)}
+
+.raster{
+  display:grid;grid-template-columns:repeat(7,1fr);gap:6px;
+  margin:6px 0 14px;max-width:340px;
+}
+.blok{aspect-ratio:1;border-radius:7px;background:var(--wolk)}
+.blok.vol{background:var(--roze)}
+.blok.over{background:var(--goud);opacity:.85}
+
+.meter{height:10px;border-radius:999px;background:var(--wolk);overflow:hidden;margin:10px 0 8px}
+.meter i{display:block;height:100%;border-radius:999px;background:var(--mint);transition:width .3s ease}
+.meter.druk i{background:var(--goud)}
+
+.signaal{
+  background:var(--mint-licht);border-radius:var(--r-mid);
+  padding:14px 16px;font-size:.9rem;font-weight:600;line-height:1.5;color:var(--navy);
+}
+.signaal.let-op{background:#fdf1dc}
+.signaal + .signaal{margin-top:10px}
+
+.balans{display:flex;gap:5px;margin:12px 0 14px;height:12px;border-radius:999px;overflow:hidden;background:var(--wolk)}
+.balans i{display:block;height:100%}
+.balans-legenda{display:flex;gap:14px;flex-wrap:wrap;font-size:.78rem;font-weight:600;color:var(--grijs)}
+.balans-legenda span{display:inline-flex;align-items:center;gap:6px}
+.balans-legenda .bol{width:9px;height:9px;border-radius:50%}
+
+/* ---------- telefoon ---------- */
+@media(max-width:720px){
+  .schil{padding:12px 12px 0}
+  .kop{margin-bottom:10px;flex-wrap:nowrap}
+  .stap-label{font-size:.74rem;margin-left:6px !important}
+  .tijd{font-size:.71rem;padding:5px 10px;white-space:nowrap}
+  .kaart{padding:18px 14px 16px;border-radius:24px}
+  .vraag{font-size:.92rem}
+  .teller{font-size:.74rem}
+  .briefje{padding:16px 16px 13px;margin:12px auto 14px}
+  .briefje-tekst{font-size:1.16rem}
+  .gebied{margin-top:9px;font-size:.74rem}
+  .bakjes{gap:9px}
+  .bak{
+    min-height:0;padding:12px 14px;display:grid;
+    grid-template-columns:1fr auto;align-items:center;gap:2px 10px;
+  }
+  .bak-titel{font-size:.98rem;grid-column:1;grid-row:1}
+  .bak-sub{font-size:.74rem;grid-column:1;grid-row:2}
+  .bak-teller{grid-column:2;grid-row:1 / span 2;margin-top:0;flex-direction:column;align-items:flex-end;gap:5px}
+  .genoeg{grid-column:1;grid-row:3;justify-self:start;margin-top:8px;padding:5px 11px;font-size:.7rem}
+  .uitweg{margin-top:11px;font-size:.82rem;padding:8px 16px}
+  .onderbalk{margin-top:12px}
+  .klein-knopje{font-size:.78rem;padding:7px 12px}
+  .paneel{padding:18px 15px}
+  .eind-kop h2{font-size:1.3rem}
+  .tab{font-size:.73rem;padding:6px 11px}
+  .ideeen{gap:7px}
+  .idee{font-size:.79rem;padding:8px 12px}
+  .eigen input{padding:11px 16px;font-size:.86rem}
+  .knop-goud{padding:11px 18px;font-size:.86rem}
+  .onderbalk-groot{flex-direction:column-reverse;align-items:stretch;gap:9px}
+  .onderbalk-groot .knop-goud{width:100%;padding:13px 18px}
+  .prompt{padding:13px 14px}
+  .prompt-tekst{font-size:.92rem}
+  .brief-chip{font-size:.82rem}
+}
+@media(max-width:470px){
+  .stap-label{display:none}
+  .onderbalk{flex-wrap:nowrap;gap:8px}
+  .klein-knopje{font-size:.75rem;padding:7px 11px;white-space:nowrap}
+}
+/* ---------- landen ---------- */
+.land-kaart{max-width:560px;margin:0 auto;text-align:center;padding-top:34px}
+.adem{
+  position:relative;width:132px;height:132px;margin:0 auto 26px;
+  display:flex;align-items:center;justify-content:center;
+}
+.adem-cirkel{
+  position:absolute;inset:0;border-radius:50%;
+  background:var(--mint);opacity:.6;
+  animation:ademen 10s ease-in-out infinite;
+}
+.adem-woord{
+  position:relative;font-size:.86rem;font-weight:700;color:var(--navy);
+  animation:ademwoord 10s ease-in-out infinite;
+}
+.adem-woord.uit{position:absolute;animation-name:ademwoord-uit}
+@keyframes ademen{
+  0%{transform:scale(.68)} 40%{transform:scale(1)} 55%{transform:scale(1)} 100%{transform:scale(.68)}
+}
+@keyframes ademwoord{
+  0%,40%{opacity:1} 48%,95%{opacity:0} 100%{opacity:1}
+}
+@keyframes ademwoord-uit{
+  0%,42%{opacity:0} 55%,92%{opacity:1} 100%{opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .adem-cirkel{animation:none;transform:scale(.9)}
+  .adem-woord{animation:none}
+  .adem-woord.uit{display:none}
+}
+.land-vraag{font-size:1.5rem;color:var(--navy);margin-top:4px}
+.land-tekst{
+  font-size:.95rem;font-weight:500;color:var(--grijs);line-height:1.6;
+  max-width:420px;margin:18px auto 0;
+}
+
+/* ---------- slot ---------- */
+.slot-kaart{max-width:480px;margin:60px auto 0;text-align:center}
+.slot-slot{font-size:2rem;margin-bottom:10px}
+.slot-fout{
+  margin-top:14px;font-size:.88rem;font-weight:700;color:var(--goud-diep);
+}
+.slot-kaart .eigen input{text-align:center;letter-spacing:.06em}
+
+/* ---------- scherpstellen ---------- */
+.scherp-blok{margin-top:22px}
+.scherp-blok h4{font-size:1.02rem;font-weight:700;color:var(--navy);margin-bottom:11px}
+.keuze{
+  font-size:.85rem;font-weight:600;padding:9px 14px;border-radius:999px;
+  background:var(--wolk);color:var(--navy);
+  box-shadow:0 2px 0 rgba(21,0,107,.05);
+}
+.keuze:hover{background:var(--mint-licht)}
+.keuze.aan{background:var(--navy);color:#fff;box-shadow:0 2px 0 rgba(21,0,107,.2)}
+
+/* ---------- maandoverzicht ---------- */
+.overzicht-vel{
+  background:#fff;border-radius:var(--r-groot);
+  box-shadow:0 10px 30px rgba(21,0,107,.08);
+  padding:30px 26px 26px;margin-bottom:18px;
+}
+.overzicht-boven{
+  text-align:center;font-size:.78rem;font-weight:700;color:var(--grijs-licht);
+  letter-spacing:.14em;text-transform:uppercase;
+}
+.maandwoord-titel{
+  font-size:2rem;font-weight:700;color:var(--navy);text-align:center;
+  letter-spacing:.03em;line-height:1.15;margin-top:4px;
+}
+.ov-blok{margin-top:24px}
+.ov-blok h3{
+  font-size:.82rem;font-weight:700;color:var(--grijs);
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;
+}
+.ov-regel{
+  display:flex;align-items:center;gap:10px;padding:9px 0;
+  border-bottom:1px solid rgba(21,0,107,.06);font-weight:600;font-size:.96rem;
+}
+.ov-regel:last-child{border-bottom:none}
+.ov-regel .bol{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+.ov-regel .ov-mini{margin-left:auto;font-size:.78rem;font-weight:700;color:var(--grijs-licht);white-space:nowrap}
+.ov-anker{
+  display:block;font-size:.79rem;font-weight:600;color:var(--goud-diep);margin-top:2px;
+}
+.ov-code{
+  margin-top:26px;background:var(--mint-licht);border-radius:var(--r-mid);
+  padding:16px;text-align:center;
+}
+.ov-code-label{display:block;font-size:.76rem;font-weight:700;color:var(--grijs);letter-spacing:.08em;text-transform:uppercase}
+.ov-code-tekst{display:block;font-size:1.35rem;font-weight:700;color:var(--navy);letter-spacing:.12em;margin:5px 0 4px}
+.ov-code-uitleg{display:block;font-size:.79rem;font-weight:500;color:var(--grijs)}
+.ov-slot{text-align:center;font-size:.9rem;font-weight:600;color:var(--grijs);margin-top:20px}
+.link-doos{
+  background:#fff;border-radius:var(--r-mid);padding:16px;margin-top:12px;
+  box-shadow:0 4px 14px rgba(21,0,107,.07);
+}
+.link-doos input{
+  width:100%;border:none;background:var(--wolk);border-radius:999px;
+  padding:11px 16px;font-size:.8rem;font-weight:600;color:var(--navy);outline:none;
+}
+@media print{
+  body{background:#fff;padding:0}
+  .kop, .geen-print, .link-doos{display:none !important}
+  .schil{max-width:none;padding:0}
+  .overzicht-vel{box-shadow:none;padding:0;border-radius:0}
+  .ov-blok{break-inside:avoid}
+}
+.eind-knoppen{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.knop-zacht{
+  background:#fff;color:var(--navy);font-weight:700;font-size:.92rem;
+  padding:12px 22px;border-radius:999px;box-shadow:0 3px 0 rgba(21,0,107,.08);
+}
+.knop-spook{
+  background:transparent;color:var(--grijs-licht);font-weight:600;font-size:.85rem;
+  padding:12px 18px;border-radius:999px;border:2px dashed rgba(21,0,107,.14);cursor:default;
+}
+.leeg{font-size:.88rem;color:var(--grijs-licht);font-weight:600;padding:6px 0}
+[hidden]{display:none !important}
+</style>
+</head>
+<body>
+
+<div class="schil">
+
+  <!-- ============ SLOT ============ -->
+  <div id="slotscherm" hidden>
+    <div class="kaart slot-kaart">
+      <p class="slot-slot">🔒</p>
+      <p class="vraag">Even je maandcode</p>
+      <span class="teller">Die staat in het clubbericht van deze maand</span>
+
+      <div class="eigen" style="margin-top:22px;margin-bottom:0">
+        <input type="text" id="code-veld" placeholder="Typ de code..." autocomplete="off">
+        <button class="knop-goud" id="code-knop">Naar binnen</button>
+      </div>
+
+      <p class="slot-fout" id="slot-fout" hidden></p>
+      <p class="dump-uitleg" style="margin-top:16px;text-align:center;padding:0">
+        Nog geen code? Even vragen in de Journal Club, dan krijg je 'm.
+      </p>
+    </div>
+  </div>
+
+
+  <div class="kop">
+    <div class="stapjes" id="stapjes">
+      <span class="stap-label" id="stap-label" style="margin-left:8px">Stap 4 · Braindump</span>
+    </div>
+    <div class="kop-rechts">
+      <button class="tijd hulp-knop" id="knop-uitleg"><span class="hulp-lang">Hoe werkt het?</span><span class="hulp-kort">?</span></button>
+      <div class="tijd" id="tijd">Nog ongeveer 6 minuutjes</div>
+    </div>
+  </div>
+
+  <!-- ============ LANDEN ============ -->
+  <div id="landscherm" hidden>
+    <div class="kaart land-kaart">
+      <div class="adem">
+        <span class="adem-cirkel"></span>
+        <span class="adem-woord in">Adem in</span>
+        <span class="adem-woord uit">Adem uit</span>
+      </div>
+
+      <p class="vraag land-vraag">Je bent er.</p>
+      <span class="teller">De was en de mail kunnen tien minuutjes wachten</span>
+
+      <p class="land-tekst">
+        Straks gooi je alles uit je hoofd op tafel, daarna leg je het op stapeltjes, en aan het eind
+        schrijf je je maand over in je bundel.
+      </p>
+
+      <div class="onderbalk onderbalk-groot">
+        <button class="klein-knopje" id="land-uitleg">Hoe werkt het precies?</button>
+        <button class="knop-goud" id="land-door">Ik ben er ✨</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TERUGBLIK ============ -->
+  <div id="terugscherm" hidden>
+    <div class="kaart">
+      <p class="vraag">Even terugkijken op vorige maand</p>
+      <span class="teller">Niet om jezelf een cijfer te geven, gewoon om te zien wat werkte</span>
+
+      <div class="scherp-blok">
+        <h4>Wat ging vorige maand vanzelf?</h4>
+        <p class="dump-uitleg" style="margin:0 0 10px">Dit neem je zo mee naar deze maand, als briefje.</p>
+        <div class="eigen" style="margin-bottom:10px">
+          <input type="text" id="mee-tekst" placeholder="Typ iets en druk op enter...">
+          <button class="knop-goud" id="mee-erbij">Meenemen</button>
+        </div>
+        <div class="briefjes" id="mee-lijst"></div>
+      </div>
+
+      <div class="scherp-blok">
+        <h4>Wat mag je loslaten?</h4>
+        <p class="dump-uitleg" style="margin:0 0 10px">Wat vorige maand niet lukte, of niet meer past. Dit gaat niet mee.</p>
+        <div class="eigen" style="margin-bottom:10px">
+          <input type="text" id="los-tekst" placeholder="Typ iets en druk op enter...">
+          <button class="knop-zacht" id="los-erbij">Loslaten</button>
+        </div>
+        <div class="briefjes" id="los-lijst"></div>
+      </div>
+
+      <div class="signaal" id="terug-signaal" style="margin-top:20px">
+        Een leeg vakje was geen mislukking, dat liet alleen zien hoe je maand liep 🩷
+      </div>
+
+      <div class="onderbalk onderbalk-groot">
+        <button class="klein-knopje" id="terug-over">Eerste keer? Sla 'm over</button>
+        <button class="knop-goud" id="terug-door">Verder →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SFEER ============ -->
+  <div id="sfeerscherm" hidden>
+    <div class="kaart">
+      <p class="vraag">Waar wil je deze maand naartoe?</p>
+      <span class="teller">Kies er één, of twee als je niet kunt kiezen</span>
+
+      <div class="sferen" id="sferen"></div>
+
+      <p class="dump-uitleg" style="margin:22px 0 8px">Wil je je maand een woord geven? Mag, hoeft niet. Het komt straks boven je overzicht te staan.</p>
+      <div class="eigen" style="margin-bottom:6px">
+        <input type="text" id="maandwoord" placeholder="Bijvoorbeeld: ademruimte, opnieuw, zacht...">
+      </div>
+
+      <div class="onderbalk onderbalk-groot">
+        <button class="klein-knopje" id="sfeer-over">Sla over, ik weet het nog niet</button>
+        <button class="knop-goud" id="sfeer-door">Verder →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ BRAINDUMP ============ -->
+  <div id="dumpscherm" hidden>
+    <div class="kaart">
+      <p class="vraag">Wat zit er in je hoofd voor deze maand?</p>
+      <span class="teller">Gooi maar op tafel, sorteren doen we straks</span>
+
+      <p style="text-align:center" id="sfeer-regel"></p>
+
+      <div class="prompt">
+        <span class="prompt-tekst" id="prompt-tekst"></span>
+        <button class="klein-knopje" id="prompt-volgende">Andere vraag ↻</button>
+      </div>
+
+      <div class="eigen" style="margin-bottom:8px">
+        <input type="text" id="dump-tekst" placeholder="Typ iets en druk op enter...">
+        <button class="knop-goud" id="dump-erbij">Erbij</button>
+      </div>
+      <p class="dump-uitleg">Komt er een probleem uit in plaats van een gewoonte? Ook goed, dan draaien we het samen om.</p>
+
+      <div class="briefjes" id="dump-lijst"></div>
+      <p class="totaal-regel" id="dump-teller"></p>
+
+      <div class="onderbalk onderbalk-groot">
+        <button class="klein-knopje" id="dump-lade-knop">Geen idee? Pak een ideetje ✨</button>
+        <button class="knop-goud" id="dump-door">Klaar, ik heb genoeg →</button>
+      </div>
+
+      <div class="lade" id="d-lade" hidden>
+        <div class="tabs" id="d-tabs"></div>
+        <div class="ideeen" id="d-ideeen"></div>
+        <div class="lade-onder">
+          <button class="klein-knopje" id="d-knop-meer">Andere ideetjes ↻</button>
+          <span class="lade-mini" id="d-lade-mini"></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ CHECK ============ -->
+  <div id="checkscherm" hidden>
+    <div class="kaart">
+      <p class="vraag">Klopt dit een beetje?</p>
+      <span class="teller">Tik een briefje aan als het bij een ander stukje van je leven hoort</span>
+
+      <div id="check-groepen" style="margin-top:20px"></div>
+      <div class="signaal" id="check-signaal"></div>
+
+      <div class="onderbalk onderbalk-groot">
+        <button class="klein-knopje" id="check-terug">← Nog iets toevoegen</button>
+        <button class="knop-goud" id="check-door">Door naar sorteren →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SORTEERSCHERM ============ -->
+  <div id="sorteerscherm" hidden>
+    <div class="kaart">
+      <p class="vraag" id="vraag">Hoe vaak wil je dit doen, deze maand?</p>
+      <span class="teller" id="teller"></span>
+
+      <div class="briefje">
+        <div class="briefje-tekst" id="briefje-tekst">...</div>
+        <div class="gebied"><span class="bol" id="gebied-bol"></span><span id="gebied-naam"></span></div>
+      </div>
+
+      <div class="bakjes">
+        <div class="bak dag" data-bak="dag" role="button" tabindex="0">
+          <span class="bak-titel">Elke dag</span>
+          <span class="bak-sub">Komt in je habittracker</span>
+          <span class="bak-teller"><span id="t-dag">0/8</span><span class="vakjes" id="v-dag"></span></span>
+          <button class="genoeg" data-genoeg="dag">Zo is het genoeg</button>
+        </div>
+        <div class="bak tetris" data-bak="tetris" role="button" tabindex="0">
+          <span class="bak-titel">Een paar keer</span>
+          <span class="bak-sub">Komt in je adult tetris</span>
+          <span class="bak-teller"><span id="t-tetris">0/8</span><span class="vakjes" id="v-tetris"></span></span>
+          <button class="genoeg" data-genoeg="tetris">Zo is het genoeg</button>
+        </div>
+        <div class="bak doel" data-bak="doel" role="button" tabindex="0">
+          <span class="bak-titel">Gewoon een voornemen</span>
+          <span class="bak-sub">Wordt een maanddoel</span>
+          <span class="bak-teller"><span id="t-doel">0/6</span><span class="vakjes" id="v-doel"></span></span>
+          <button class="genoeg" data-genoeg="doel">Zo is het genoeg</button>
+        </div>
+      </div>
+
+      <p class="totaal-regel" id="totaal-regel"></p>
+
+      <button class="uitweg" data-bak="niet">Even niet deze maand</button>
+
+      <div class="onderbalk">
+        <button class="klein-knopje" id="knop-terug" disabled>← Oeps, terug</button>
+        <button class="klein-knopje" id="knop-lade">Geen idee? Pak een ideetje ✨</button>
+      </div>
+
+      <div class="lade" id="lade" hidden>
+        <div class="eigen">
+          <input type="text" id="eigen-tekst" placeholder="Zoek een gewoonte, of typ je eigen briefje...">
+          <button class="knop-goud" id="knop-toevoegen">Erbij</button>
+        </div>
+        <div class="tabs" id="tabs"></div>
+        <div class="ideeen" id="ideeen"></div>
+        <div class="lade-onder">
+          <button class="klein-knopje" id="knop-meer">Andere ideetjes ↻</button>
+          <span class="lade-mini" id="lade-mini"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ NOG PLEK ============ -->
+  <div id="ruimtescherm" hidden>
+    <div class="kaart">
+      <p class="vraag">Je briefjes zijn op, en er is nog plek 🥰</p>
+      <span class="teller" id="ruimte-teller"></span>
+
+      <div class="lade" style="margin-top:20px">
+        <div class="eigen">
+          <input type="text" id="r-eigen-tekst" placeholder="Zoek een gewoonte, of typ je eigen briefje...">
+          <button class="knop-goud" id="r-knop-toevoegen">Erbij</button>
+        </div>
+        <div class="tabs" id="r-tabs"></div>
+        <div class="ideeen" id="r-ideeen"></div>
+        <div class="lade-onder">
+          <button class="klein-knopje" id="r-knop-meer">Andere ideetjes ↻</button>
+          <span class="lade-mini" id="r-lade-mini"></span>
+        </div>
+      </div>
+
+      <div class="onderbalk" style="justify-content:center;margin-top:20px">
+        <button class="klein-knopje" id="knop-klaar">Zo is het goed, laat het overzicht zien →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EINDSCHERM ============ -->
+  <div id="eindscherm" hidden>
+    <div class="eind-kop">
+      <h2 id="eind-titel">Gesorteerd! 🥳</h2>
+      <p class="maandwoord-groot" id="eind-woord" hidden></p>
+      <p id="eind-onder">Dit wordt jouw maand.</p>
+    </div>
+
+    <div class="paneel">
+      <div class="paneel-kop"><h3>Elke dag</h3><span class="mini" id="mini-dag"></span></div>
+      <div id="lijst-dag"></div>
+      <div class="meter" id="meter-dag"><i style="width:0%"></i></div>
+      <div class="signaal" id="signaal-dag"></div>
+    </div>
+
+    <div class="paneel">
+      <div class="paneel-kop"><h3>Adult tetris</h3><span class="mini" id="mini-tetris"></span></div>
+      <div id="lijst-tetris"></div>
+      <div class="raster" id="raster"></div>
+      <div class="signaal" id="signaal-tetris"></div>
+    </div>
+
+    <div class="paneel">
+      <div class="paneel-kop"><h3>Maanddoelen</h3><span class="mini" id="mini-doel"></span></div>
+      <div id="lijst-doel"></div>
+    </div>
+
+    <div class="paneel">
+      <div class="paneel-kop"><h3>Balanscheck</h3><span class="mini">Waar gaat je maand over?</span></div>
+      <div class="balans" id="balans"></div>
+      <div class="balans-legenda" id="balans-legenda"></div>
+      <div style="height:14px"></div>
+      <div class="signaal" id="signaal-balans"></div>
+    </div>
+
+    <div class="eind-knoppen">
+      <button class="knop-zacht" id="knop-opnieuw">Opnieuw beginnen</button>
+      <button class="knop-goud" id="knop-scherp">Verder, even scherpstellen →</button>
+    </div>
+  </div>
+
+  <!-- ============ SCHERPSTELLEN ============ -->
+  <div id="scherpscherm" hidden>
+    <div class="kaart">
+      <p class="vraag">Nog even scherpstellen</p>
+      <span class="teller">Drie kleine afspraakjes met jezelf, overslaan mag altijd</span>
+
+      <div class="scherp-blok" id="blok-anker">
+        <h4>Welke gewoonte wil je deze maand echt niet missen?</h4>
+        <div class="ideeen" id="anker-keuze"></div>
+        <div id="anker-koppel" hidden>
+          <p class="dump-uitleg" style="margin:14px 0 8px">Plak 'm vast aan iets wat je toch al doet, dan hoef je er niet aan te denken.</p>
+          <div class="ideeen" id="koppel-keuze"></div>
+          <div class="eigen" style="margin-top:10px;margin-bottom:0">
+            <input type="text" id="koppel-eigen" placeholder="Of typ je eigen moment...">
+          </div>
+        </div>
+      </div>
+
+      <div class="scherp-blok">
+        <h4>Wanneer vul je je tracker in?</h4>
+        <div class="ideeen" id="invul-keuze"></div>
+      </div>
+
+      <div class="scherp-blok">
+        <h4>Waar leg je je journal neer?</h4>
+        <div class="ideeen" id="plek-keuze"></div>
+      </div>
+
+      <div class="onderbalk onderbalk-groot">
+        <button class="klein-knopje" id="scherp-terug">← Terug naar je maand</button>
+        <button class="knop-goud" id="scherp-door">Naar je maandoverzicht →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MAANDOVERZICHT ============ -->
+  <div id="overzichtscherm" hidden>
+    <div class="overzicht-vel" id="overzicht-vel">
+      <div class="eind-kop">
+        <p class="overzicht-boven">Jouw maand</p>
+        <h2 class="maandwoord-titel" id="ov-woord">Maandoverzicht</h2>
+        <p id="ov-onder"></p>
+      </div>
+
+      <div class="ov-blok">
+        <h3>Habittracker · elke dag</h3>
+        <div id="ov-dag"></div>
+      </div>
+
+      <div class="ov-blok">
+        <h3>Adult tetris · een paar keer</h3>
+        <div id="ov-tetris"></div>
+      </div>
+
+      <div class="ov-blok">
+        <h3>Maanddoelen</h3>
+        <div id="ov-doel"></div>
+      </div>
+
+      <div class="ov-blok" id="ov-afspraken-blok">
+        <h3>Je afspraakjes</h3>
+        <div id="ov-afspraken"></div>
+      </div>
+
+      <div class="ov-code" id="ov-sfeerblok">
+        <span class="ov-code-label">Deze maand ga je voor</span>
+        <span class="ov-code-tekst" id="ov-code">—</span>
+        <span class="ov-code-uitleg" id="ov-code-uitleg">Deel dat in de Club, dan zie je wie deze maand hetzelfde koos.</span>
+      </div>
+
+      <p class="ov-slot">Schrijf je maand nu over in je journal, er wordt niks bewaard 🩷</p>
+    </div>
+
+    <div class="eind-knoppen geen-print">
+      <button class="knop-zacht" id="knop-print">Printen</button>
+      <button class="knop-zacht" id="knop-link">Bewaar als link</button>
+      <button class="knop-zacht" id="knop-terug-eind">← Terug</button>
+      <button class="knop-zacht" id="knop-opnieuw2">Opnieuw beginnen</button>
+    </div>
+    <div class="link-doos geen-print" id="link-doos" hidden>
+      <p class="dump-uitleg" style="margin:0 0 8px">Bewaar deze link, dan opent je maand later gewoon weer. Er staat niks op een server, alles zit in de link zelf.</p>
+      <input type="text" id="bewaar-link" readonly>
+    </div>
+  </div>
+
+</div>
+
+<!-- frequentie / vol -->
+<div class="sluier" id="sluier" hidden>
+  <div class="dialoog" id="dialoog"></div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* De maandcode staat helemaal bovenin dit bestand, bij <head>. */
+const TOEGANGSCODES = window.MAANDCODES || ['kaneelstok'];
+
+const GEBIEDEN = {
+  lichaam: {naam:'Lichaam',        kleur:'#b1dfcd'},
+  rust:    {naam:'Hoofd & rust',   kleur:'#bca8c3'},
+  gezin:   {naam:'Gezin',          kleur:'#f2cdd7'},
+  huis:    {naam:'Huis & regelwerk',kleur:'#f4b440'},
+  mezelf:  {naam:'Voor mezelf',    kleur:'rgba(21,0,107,.55)'}
+};
+
+const LIMIET = { dag:8, tetris:8, doel:6 };
+const BAKNAAM = { dag:'habittracker', tetris:'adult tetris', doel:'maanddoelen' };
+let gesloten = { dag:false, tetris:false, doel:false };
+
+
+/* Ideeën letterlijk uit de habittracker-blog van Okido, per categorie.
+   Elke categorie hangt aan één leefgebied, dat voedt de balanscheck. */
+const CATS = [
+  {naam:'Rust en ontspanning', gebied:'rust', lijst:[
+    'Tien minuten voor mezelf','Journallen','Kleuren','Tekenen','Lezen','Een podcast luisteren','Muziek luisteren',
+    'In stilte zitten','Ademhalingsoefening doen','Mediteren','Yoga doen','Een warme douche nemen','In bad gaan',
+    'Een kop thee drinken zonder afleiding','Buiten zitten','Even naar buiten gaan','Bewust pauze nemen','Telefoon wegleggen',
+    'Een uur zonder social media','Een schermvrije avond','Op tijd stoppen met werken','Creatief bezig zijn','Even puzzelen',
+    'Een serie kijken zonder ondertussen te werken','Vijf minuten niets doen','Een kaarsje aansteken',
+    'Luisteren naar een ontspanningsoefening','Dankbaarheid opschrijven','Een fijne herinnering opschrijven',
+    'Een moment bewust vertragen','Op tijd rust nemen bij vermoeidheid','Een grens aangeven','Een keer bewust nee zeggen']},
+
+  {naam:'Zelfzorg', gebied:'mezelf', lijst:[
+    'Gezicht reinigen','Dagcrème gebruiken','Avondroutine uitvoeren','Haren verzorgen','Nagels verzorgen',
+    'Een outfit dragen waarin ik me fijn voel','Een fijne bodylotion gebruiken','Voeten verzorgen','Een gezichtsmasker nemen',
+    'Alleen een rondje wandelen','Iets doen waar ik blij van word','Vriendin bellen','Pauze nemen voordat ik over mijn grens ga',
+    'Mijn gevoelens opschrijven','Mijn hoofd leegschrijven','Een compliment aan mezelf geven','Eén ding doen dat alleen voor mij is',
+    'Geen werk doen in de avond','Tijd besteden aan een hobby','Een kleine overwinning opschrijven',
+    'Niet alles zelf proberen te doen','Op tijd stoppen wanneer mijn energie op is']},
+
+  {naam:'Slaap en avondroutine', gebied:'lichaam', lijst:[
+    'Voor 23.00 uur naar bed','Zeven uur slapen','Telefoon niet mee naar bed','Een half uur voor het slapen geen scherm',
+    'Op een vaste tijd naar bed','Op een vaste tijd opstaan','Slaapkamer luchten','Cafeïne vermijden in de avond',
+    'Geen snacks meer na het avondeten','Avondroutine volgen','Kleding voor morgen klaarleggen','Broodtrommels in de avond klaarmaken',
+    'Tas voor morgen klaarzetten','Dag afsluiten in mijn journal','Lezen voor het slapengaan','Ontspanningsoefening doen',
+    'Geen werkmail meer openen','Rustige muziek luisteren','Op tijd naar boven gaan','Niet snoozen',
+    'Gordijnen direct openen na het opstaan','Bed opmaken','Een rustige ochtendstart nemen']},
+
+  {naam:'Gezondheid', gebied:'lichaam', lijst:[
+    'Medicijnen innemen','Vitamines innemen','Bloeddruk meten','Bloedsuiker meten','Klachten bijhouden','Migraine bijhouden',
+    'Hoofdpijnvrije dag noteren','Energielevel bijhouden','Pijnscore bijhouden','Menstruatie bijhouden','Cyclusklachten bijhouden',
+    'Stemming bijhouden','Voldoende rust nemen','Oefeningen van de fysiotherapeut doen','Rekken en strekken',
+    'Houdingsoefeningen doen','Niet over mijn grens gaan','Zonlicht pakken','Frisse lucht krijgen','Rustig eten',
+    'Allergieklachten noteren','Een rustmoment plannen na een drukke activiteit']},
+
+  {naam:'Drinken', gebied:'lichaam', lijst:[
+    'Anderhalve liter water drinken','Een glas water bij het opstaan','Een glas water bij iedere maaltijd','Waterfles meenemen',
+    'Waterfles twee keer vullen','Minder frisdrank drinken','Geen energiedrank drinken','Maximaal twee koppen koffie',
+    'Na 15.00 uur geen koffie','Geen suiker in koffie of thee']},
+
+  {naam:'Eten', gebied:'lichaam', lijst:[
+    'Ontbijten','Rustig ontbijten','Twee stuks fruit eten','Groenten bij de lunch','Groenten bij het avondeten',
+    'Gezonde lunch maken','Zelf koken','Maaltijdplanning volgen','Geen eten bestellen','Gezonde snack nemen','Minder snoepen',
+    'Geen snoepdag','Geen chips eten','Geen frisdrank drinken','Eiwitrijk eten','Voldoende vezels eten',
+    'Lunch meenemen naar het werk','Broodtrommel voorbereiden','Bewust eten zonder telefoon','Aan tafel eten',
+    'Niet gedachteloos snacken','Eén genietmoment bewust kiezen','Genoeg eten op drukke dagen','Niet vergeten te lunchen',
+    'Weekmenu maken','Boodschappenlijst gebruiken']},
+
+  {naam:'Bewegen', gebied:'lichaam', lijst:[
+    'Tien minuten wandelen','Dertig minuten wandelen','Achtduizend stappen','Tienduizend stappen','Fietsen','Trap nemen',
+    'Yoga doen','Stretchen','Thuiswork-out doen','Naar de sportschool','Zwemmen','Hardlopen','Dansen',
+    'Buiten spelen met de kinderen','Een wandeling na het avondeten','Ochtendwandeling maken',
+    'Bewegen tijdens het televisiekijken','Staand werken','Ieder uur even opstaan','Oefeningen voor mijn rug doen',
+    'Oefeningen voor mijn nek doen','Krachttraining doen','Een sportles volgen','Tennissen','Pilates doen','Touwtjespringen',
+    'Een actieve huishoudelijke taak doen','Fietsen in plaats van de auto pakken','Een ommetje maken tijdens de lunch',
+    'Wandelen tijdens een telefoongesprek']},
+
+  {naam:'Mentale rust en een vol hoofd', gebied:'rust', lijst:[
+    'Braindump maken','To-dolijst maken','Drie prioriteiten kiezen','Eén taak tegelijk doen','Social media beperken',
+    'Tien minuten zonder prikkels','Niet alles vandaag hoeven doen','Een planning maken','Morgen voorbereiden',
+    'Een lege avond houden','Telefoon op niet storen zetten','Vijftien minuten opruimen in mijn hoofd en huis',
+    'Een moeilijke taak als eerste doen','Eén openstaand klusje afronden','Bewust kiezen wat vandaag genoeg is']},
+
+  {naam:'Huishouden', gebied:'huis', lijst:[
+    'Vaatwasser uitruimen','Vaatwasser inruimen','Aanrecht leegmaken','Keukentafel leegmaken','Eén was draaien',
+    'Was direct ophangen','Was opvouwen','Was direct opruimen','Tien minuten opruimen','Eén kamer opruimen','Speelgoed opruimen',
+    'Benedenverdieping netjes maken','Slaapkamer opruimen','Bedden opmaken','Stofzuigen','Koelkast checken',
+    'Boodschappenlijst maken','Een opruimrondje voor het slapengaan','Schoenen en jassen opruimen','Tassen klaarzetten',
+    'Tien minuten een achterstallige klus doen','Iedere dag één klein huishoudelijk klusje','Kinderen laten helpen met een taak',
+    'Spullen direct terugleggen','Iedere avond de woonkamer resetten']},
+
+  {naam:'Opruimen en ontspullen', gebied:'huis', lijst:[
+    'Eén lade opruimen','Eén plank opruimen','Vijf spullen wegdoen','Eén tas vullen voor de kringloop','Kleding uitzoeken',
+    'Speelgoed uitzoeken','Papierwerk uitzoeken','Eén rommelhoek aanpakken','Badkamerproducten controleren',
+    'Keukenkastje opruimen','Koelkast opruimen','Vriezer opruimen','Foto’s op telefoon uitzoeken','Downloads verwijderen',
+    'Mailbox opruimen','Eén map op de computer opruimen','Spullen direct op hun vaste plek leggen','Geen nieuwe spullen kopen',
+    'Eén ding wegdoen voordat er iets nieuws binnenkomt','Tien minuten ontspullen']},
+
+  {naam:'Gezin en kinderen', gebied:'gezin', lijst:[
+    'Voorlezen','Samen een spelletje doen','Samen naar buiten','Telefoon weg tijdens gezinstijd','Samen aan tafel eten',
+    'Bewust luisteren zonder iets anders te doen','Samen knutselen','Samen tekenen','Samen wandelen','Een rustig bedritueel',
+    'Schooltas controleren','Broodtrommels voorbereiden','Kleding voor morgen klaarleggen','Een grappig moment opschrijven',
+    'Niet haasten tijdens het naar bed brengen','Een taak samen doen','Een schermvrij gezinsmoment','Samen iets bakken of koken']},
+
+  {naam:'Relatie en sociale contacten', gebied:'gezin', lijst:[
+    'Samen koffie drinken','Samen wandelen','Een avond zonder telefoon','Samen een serie kijken','Samen eten zonder afleiding',
+    'Een moment samen lachen']},
+
+  {naam:'Werk en ondernemen', gebied:'huis', lijst:[
+    'Dagplanning maken','Drie belangrijkste taken kiezen','Op tijd beginnen','Op tijd stoppen','Pauze nemen','Lunchpauze nemen',
+    'Telefoon weg tijdens het werken','Omzet bijhouden','Uitgaven bijhouden','Werkplek opruimen','Taken voor morgen klaarzetten',
+    'Niet werken na een afgesproken tijd','Een kwartier werken aan een groot project','Een succes van de dag noteren',
+    'Een werkdag afsluiten met een korte terugblik']},
+
+  {naam:'Geld en administratie', gebied:'huis', lijst:[
+    'Uitgaven bijhouden','Geen geld uitgeven','Spaarbedrag overmaken','Boodschappenbudget bijhouden',
+    'Geen impulsieve aankoop doen','Lunch meenemen','Geen eten bestellen','Weekbudget controleren','Boodschappenlijst volgen',
+    'Alleen kopen wat op het lijstje staat']},
+
+  {naam:'Creativiteit en journaling', gebied:'mezelf', lijst:[
+    'Journal invullen','Doodlen','Kleuren','Een pagina versieren','Een foto inplakken','Een dankbaarheidsmoment noteren',
+    'Tien minuten tekenen','Niet streven naar perfectie','Mijn journal open op tafel leggen']},
+
+  {naam:'Digitale rust', gebied:'rust', lijst:[
+    'Geen telefoon tijdens het ontbijt','Geen telefoon tijdens het avondeten','Telefoon niet meenemen naar de slaapkamer',
+    'Schermtijd beperken','Social media maximaal dertig minuten','Meldingen uitzetten','Eén uur offline zijn',
+    'Een avond zonder social media','Geen telefoon tijdens het wachten','Mail op vaste momenten controleren',
+    'Niet direct reageren op ieder bericht','Telefoon op niet storen','Geen scherm in het eerste half uur van de dag',
+    'Geen scherm in het laatste half uur van de dag','Eén dag geen online aankopen doen','Foto’s en bestanden opruimen']},
+
+  {naam:'Persoonlijke groei', gebied:'mezelf', lijst:[
+    'Een pagina lezen','Een hoofdstuk lezen','Een podcast luisteren','Een cursusles volgen','Oefenen met een nieuwe vaardigheid',
+    'Iets nieuws leren','Een doel opschrijven','Een kleine stap richting mijn doel zetten','Reflecteren op mijn dag',
+    'Opschrijven wat goed ging','Opschrijven wat ik anders wil doen','Een beperkende gedachte onderzoeken',
+    'Positief tegen mezelf praten','Een compliment aannemen','Iets doen wat ik spannend vind','Niet vergelijken met anderen',
+    'Mijn eigen tempo respecteren','Eén succes vieren','Een moment trots op mezelf zijn','Iets afmaken',
+    'Een afspraak met mezelf nakomen']},
+
+  {naam:'Een rustige ochtend', gebied:'rust', lijst:[
+    'Opstaan bij de eerste wekker','Gordijnen openen','Bed opmaken','Een glas water drinken','Even rekken en strekken',
+    'Niet direct op mijn telefoon kijken','Rustig ontbijten','Medicijnen of vitamines nemen','Dagplanning bekijken',
+    'Drie prioriteiten opschrijven','Tien minuten journallen','Kleding in de avond klaarleggen','Tassen in de avond klaarzetten',
+    'Vijf minuten eerder vertrekken','Een rustige afspeellijst aanzetten','Even naar buiten gaan','De dag beginnen zonder haast',
+    'Eén huishoudelijk taakje doen','Aanrecht leeg achterlaten','Eerst voor mezelf zorgen voordat de drukte begint']},
+
+  {naam:'Een rustige avond', gebied:'rust', lijst:[
+    'Woonkamer kort opruimen','Aanrecht leegmaken','Vaatwasser aanzetten','Broodtrommels klaarmaken','Tassen klaarzetten',
+    'Kleding klaarleggen','Agenda voor morgen bekijken','Drie taken voor morgen opschrijven','Telefoon wegleggen',
+    'Een kop thee drinken','Douchen','Gezicht verzorgen','Lezen','Journallen','Habittracker invullen',
+    'Een dankbaarheidsmoment opschrijven','Geen werk meer doen','Lichten dimmen','Op tijd naar boven gaan',
+    'Op een vast tijdstip slapen']}
+];
+
+/* per leefgebied één ontdubbelde lijst, met de categorienaam erbij */
+const POEL = {};
+Object.keys(GEBIEDEN).forEach(function(g){ POEL[g] = []; });
+const ALLES = [];
+(function(){
+  const perGebied = {};
+  Object.keys(GEBIEDEN).forEach(function(g){ perGebied[g] = {}; });
+  const globaal = {};
+  CATS.forEach(function(c){
+    c.lijst.forEach(function(t){
+      if(!perGebied[c.gebied][t]){
+        perGebied[c.gebied][t] = true;
+        POEL[c.gebied].push({tekst:t, gebied:c.gebied, cat:c.naam});
+      }
+      if(!globaal[t]){ globaal[t] = true; ALLES.push({tekst:t, gebied:c.gebied, cat:c.naam}); }
+    });
+  });
+})();
+
+let items = [];
+let volgId = 1;
+let geschiedenis = [];
+let actiefGebied = 'lichaam';
+let toegevoegdeIdeeen = new Set();
+let klaarGezegd = false;
+let fase = 'dump';
+let promptNr = 0;
+
+/* Vragen uit de habittracker-blog van Okido, als geheugensteun bij het dumpen */
+/* De sferen sturen de ideeënlade voor een deel: ze zetten passende gewoontes
+   vooraan, maar sluiten niks af. Alle leefgebieden blijven één tik weg. */
+const SFEREN = [
+  {id:'rust',      code:'RUST',      naam:'Rust',        kleur:'#bca8c3', regel:'Minder ruis in mijn hoofd',
+   cats:['Rust en ontspanning','Mentale rust en een vol hoofd','Digitale rust','Een rustige avond'],
+   prompts:['Wanneer op de dag valt het even stil?','Wat kost je de meeste ruis in je hoofd?']},
+  {id:'gezond',    code:'GEZOND',    naam:'Gezond',      kleur:'#b1dfcd', regel:'Beter voor mijn lijf zorgen',
+   cats:['Gezondheid','Drinken','Eten','Bewegen','Slaap en avondroutine'],
+   prompts:['Wat zou je lijf deze maand van je vragen?','Welk klein gezond dingetje lukt je zeker?']},
+  {id:'overzicht', code:'OVERZICHT', naam:'Overzicht',   kleur:'#f4b440', regel:'Grip op huis en regelwerk',
+   cats:['Huishouden','Opruimen en ontspullen','Geld en administratie','Een rustige ochtend'],
+   prompts:['Welke hoek in huis vraagt om aandacht?','Wat blijft er steeds liggen?']},
+  {id:'samen',     code:'SAMEN',     naam:'Samen',       kleur:'#f2cdd7', regel:'Echte momentjes met mijn mensen',
+   cats:['Gezin en kinderen','Relatie en sociale contacten'],
+   prompts:['Met wie wil je deze maand meer tijd doorbrengen?','Welk momentje samen wil je vasthouden?']},
+  {id:'mezelf',    code:'MEZELF',    naam:'Voor mezelf', kleur:'rgba(21,0,107,.55)', regel:'Tijd die alleen van mij is',
+   cats:['Zelfzorg','Creativiteit en journaling','Persoonlijke groei'],
+   prompts:['Waar word je blij van, maar kom je nooit aan toe?','Wat zou je doen met een uurtje voor jezelf?']},
+  {id:'nieuw',     code:'NIEUW',     naam:'Iets nieuws', kleur:'#d7f7eb', regel:'Iets proberen wat ik nog nooit deed',
+   cats:['Persoonlijke groei','Creativiteit en journaling','Bewegen'],
+   prompts:['Wat wilde je altijd al eens proberen?','Wat zou je deze maand willen leren?']}
+];
+let gekozenSfeer = [];
+let maandwoord = '';
+
+/* stap 6, alle drie de lijstjes komen uit de habittracker-blog */
+const KOPPELMOMENTEN = [
+  'Na het tandenpoetsen','Na het wegbrengen van de kinderen','Bij mijn eerste kop koffie',
+  'Na het avondeten','Als de kinderen op bed liggen','Voor ik ga slapen'
+];
+const INVULMOMENTEN = [
+  'Bij mijn koffiemoment','Na het avondeten','Als de kinderen in bed liggen',
+  'Vlak voor het slapen','Bij mijn journalmoment'
+];
+const PLEKKEN = [
+  'Naast mijn bed','Bij het koffiezetapparaat','Op mijn bureau','In de keuken','Naast mijn favoriete stoel'
+];
+let meenemen = [];
+let loslaten = [];
+let meenemenGeplaatst = false;
+let ankerId = null;
+let ankerMoment = '';
+let invulMoment = '';
+let journalPlek = '';
+
+/* waar een briefje landt als de trefwoorden niks opleveren, per sfeer */
+const SFEER_GEBIED = {
+  rust:'rust', gezond:'lichaam', overzicht:'huis', samen:'gezin', mezelf:'mezelf', nieuw:'mezelf'
+};
+
+const PROMPTS = [
+  'Waar heb je op dit moment het meeste behoefte aan?',
+  'Wat geeft jou rust?',
+  'Welke kleine gewoonte maakt je dag net iets fijner?',
+  'Wat wil je niet alleen meten, maar echt vaker gaan doen?',
+  'Waar loop je steeds tegenaan, en wat zou daarbij helpen?',
+  'Wat vergeet je regelmatig, en wil je vastleggen?',
+  'Wat moet er deze maand geregeld worden?',
+  'Waar word je blij van, maar kom je nooit aan toe?'
+];
+
+/* Zinnetjes die verraden dat iemand een probleem opschrijft in plaats van iets doenbaars.
+   "boodschappen die ik niet op tijd bestel" is geen gewoonte, "boodschappen op maandag
+   bestellen" wel. De tool draait het niet zelf om, maar helpt je eraan. */
+const KLAAGWOORDEN = ['niet','geen','nooit','vergeet','vergeten','lukt','mislukt','te laat','steeds','altijd','kom ik','krijg ik','moet nog','chaos','rommel','stress','zit vol','loop ik'];
+
+function lijktOpProbleem(tekst){
+  const t = ' ' + tekst.toLowerCase().replace(/[.,!?]/g,' ') + ' ';
+
+  /* staat het letterlijk in de ideeënbank? dan is het gewoon een gewoonte */
+  for(let i = 0; i < ALLES.length; i++){
+    if(ALLES[i].tekst.toLowerCase() === tekst.toLowerCase().trim()) return false;
+  }
+  /* zonder "ik" of "mijn" is het meestal al een opdracht aan jezelf */
+  const persoonlijk = / ik | mijn | me /.test(t);
+  if(!persoonlijk) return false;
+
+  for(let k = 0; k < KLAAGWOORDEN.length; k++){
+    if(t.indexOf(' ' + KLAAGWOORDEN[k] + ' ') >= 0 || t.indexOf(' ' + KLAAGWOORDEN[k]) >= 0){ return true; }
+  }
+  return false;
+}
+
+/* zoekt in de ideeënbank naar gewoontes die bij het probleem passen */
+function passendeGewoontes(tekst){
+  const woorden = tekst.toLowerCase().split(/[^a-zà-ü]+/).filter(function(w){ return w.length >= 5; });
+  if(!woorden.length) return [];
+  const scores = [];
+  ALLES.forEach(function(i){
+    const bank = i.tekst.toLowerCase();
+    let score = 0;
+    woorden.forEach(function(w){
+      if(bank.indexOf(w) >= 0){ score += w.length; }
+      else if(w.length >= 7 && bank.indexOf(w.slice(0, 6)) >= 0){ score += 3; }
+    });
+    if(score > 0) scores.push({idee:i, score:score});
+  });
+  scores.sort(function(a,b){ return b.score - a.score; });
+  return scores.slice(0, 6).map(function(s){ return s.idee; });
+}
+
+/* Woorden die verraden bij welk stukje van je leven iets hoort.
+   Ruwe gok, de checkstap laat je het altijd verzetten. */
+const RAAD = {
+  gezin:  ['kind','kinderen','zoon','dochter','partner','vriendin','vriend','oma','opa','zus','broer','moeder','vader',
+           'school','voorlezen','spelletje','samen','gezin','verjaardag','uitje','oppas','zwemles','knutselen','bedritueel','schooltas'],
+  lichaam:['water','drinken','fruit','groente','lunch','ontbijt','avondeten','snoep','chips','eten','slapen','slaap','bed ',
+           'sporten','sportschool','bewegen','wandelen','fietsen','stappen','yoga','pilates','zwemmen','hardlopen','stretch',
+           'vitamine','medicijn','migraine','hoofdpijn','fysio','gezond','koffie','suiker','rekken','trap','krachttraining',
+           /* sport */
+           'sport','fitness','bootcamp','work-out','workout','tennis','padel','voetbal','hockey','volleybal','dansles',
+           'spinning','roeien','schaatsen','skien','bergwandeling','marathon','hardloop','fietstocht'],
+  rust:   ['rust','adem','mediteren','stilte','stil zitten','telefoon','scherm','social','media','hoofd','pauze','vertragen',
+           'grens','nee zeggen','prioriteit','braindump','to-do','overzicht','prikkels','offline','meldingen','dankbaar','kaarsje'],
+  mezelf: ['mezelf','voor mij','journal','kleuren','tekenen','doodle','lezen','boek','hobby','creatief','muziek','podcast',
+           'cursus','leren','in bad','douche','masker','nagels','gezicht','crème','bodylotion','stift','compliment','trots',
+           /* creatieve hobby's */
+           'schilder','aquarel','schets','atelier','borduren','haken','breien','naaien','quilt','handletter','kalligrafie',
+           'scrapbook','plakboek','fotografie','fotograferen','camera','gitaar','piano','instrument','zingen','koor',
+           'puzzelen','legpuzzel','moestuin','zaaien','stekjes','pottenbakken','klei','houtbewerking','kaarten maken'],
+  huis:   ['was','wassen','opruimen','ontspullen','schoonmaken','stofzuigen','keuken','koelkast','vriezer','kast','lade','klus',
+           'boodschappen','koken','weekmenu','maaltijd','administratie','mailbox','rekening','geld','budget','sparen','uitgaven',
+           'tandarts','dokter','afspraak','regelen','kopen','tuin','auto','garage','post','papierwerk','vaatwasser','stofzuiger',
+           'werk','klant','omzet','factuur','agenda','vakantie','kleding','spullen','broodtrommel','bedden','woonkamer','slaapkamer']
+};
+
+function raadGebied(tekst){
+  const t = tekst.toLowerCase();
+
+  /* 1. staat het letterlijk in de ideeënbank? */
+  for(let i = 0; i < ALLES.length; i++){
+    if(ALLES[i].tekst.toLowerCase() === t) return ALLES[i].gebied;
+  }
+
+  /* 2. trefwoorden, langste woord telt het zwaarst */
+  let beste = null, besteScore = 0;
+  ['gezin','lichaam','rust','mezelf','huis'].forEach(function(g){
+    let score = 0;
+    RAAD[g].forEach(function(w){ if(t.indexOf(w) >= 0) score += w.length; });
+    if(score > besteScore){ besteScore = score; beste = g; }
+  });
+  if(beste) return beste;
+
+  /* 3. deelt het een fors woord met iets uit de bank? */
+  const woorden = t.split(/[^a-zà-ü]+/).filter(function(w){ return w.length >= 6; });
+  for(let i = 0; i < ALLES.length; i++){
+    const bank = ALLES[i].tekst.toLowerCase();
+    for(let k = 0; k < woorden.length; k++){
+      if(bank.indexOf(woorden[k]) >= 0) return ALLES[i].gebied;
+    }
+  }
+
+  /* 4. anders: leun op de sfeer die je in stap 3 koos. Wie "iets nieuws" kiest
+        en dan "een groot schilderij maken" typt, bedoelt geen regelwerk. */
+  if(gekozenSfeer.length){ return SFEER_GEBIED[gekozenSfeer[gekozenSfeer.length - 1]] || 'huis'; }
+
+  /* 5. helemaal geen aanknopingspunt: regelwerk, daar valt het meeste losse gedoe onder */
+  return 'huis';
+}
+
+function toonScherm(naam){
+  fase = naam;
+  document.getElementById('landscherm').hidden      = naam !== 'landen';
+  document.getElementById('terugscherm').hidden     = naam !== 'terugblik';
+  document.getElementById('slotscherm').hidden      = naam !== 'slot';
+  document.querySelector('.kop').hidden             = naam === 'slot';
+  document.getElementById('scherpscherm').hidden    = naam !== 'scherp';
+  document.getElementById('overzichtscherm').hidden = naam !== 'overzicht';
+  document.getElementById('sfeerscherm').hidden   = naam !== 'sfeer';
+  document.getElementById('dumpscherm').hidden    = naam !== 'dump';
+  document.getElementById('checkscherm').hidden   = naam !== 'check';
+  document.getElementById('sorteerscherm').hidden = naam !== 'sorteer';
+  document.getElementById('ruimtescherm').hidden  = naam !== 'ruimte';
+  document.getElementById('eindscherm').hidden    = naam !== 'eind';
+  if(naam !== 'slot'){ tekenStapjes(); }
+}
+
+function tekenStapjes(){
+  const nu = fase === 'landen' ? 0 :
+             fase === 'terugblik' ? 1 :
+             fase === 'sfeer' ? 2 :
+             ((fase === 'dump' || fase === 'check') ? 3 :
+             (fase === 'scherp' ? 5 : (fase === 'overzicht' ? 6 : 4)));
+  const doos = document.getElementById('stapjes');
+  const label = document.getElementById('stap-label');
+  Array.prototype.slice.call(doos.querySelectorAll('.stip')).forEach(function(s){ s.remove(); });
+  for(let k = 6; k >= 0; k--){
+    const s = document.createElement('span');
+    s.className = 'stip' + (k < nu ? ' klaar' : (k === nu ? ' nu' : ''));
+    doos.insertBefore(s, doos.firstChild);
+  }
+  label.textContent = nu === 0 ? 'Stap 1 · Landen' :
+                      nu === 1 ? 'Stap 2 · Terugblik' :
+                      nu === 2 ? 'Stap 3 · Sfeer kiezen' :
+                      nu === 3 ? 'Stap 4 · Braindump' :
+                      nu === 5 ? 'Stap 6 · Scherpstellen' :
+                      nu === 6 ? 'Stap 7 · Je maandoverzicht' : 'Stap 5 · Sorteren';
+  document.getElementById('tijd').textContent =
+    fase === 'landen' ? 'Tien minuutjes, meer niet' :
+    fase === 'terugblik' ? 'Nog ongeveer 9 minuutjes' :
+    fase === 'sfeer' ? 'Nog ongeveer 7 minuutjes' :
+    fase === 'dump' ? 'Nog ongeveer 6 minuutjes' :
+    fase === 'check' ? 'Nog ongeveer 5 minuutjes' :
+    fase === 'scherp' ? 'Nog 2 minuutjes' :
+    fase === 'overzicht' ? 'Klaar! 🥳' : 'Nog ongeveer 4 minuutjes';
+}
+
+/* ---------- stap 3: sfeer ---------- */
+function sfeerObject(id){
+  return SFEREN.filter(function(s){ return s.id === id; })[0];
+}
+function sfeerNamen(){
+  return gekozenSfeer.map(function(id){ return sfeerObject(id).naam; }).join(' en ');
+}
+function bouwSfeerPoel(){
+  POEL.sfeer = [];
+  if(!gekozenSfeer.length) return;
+  const gezien = {};
+  gekozenSfeer.forEach(function(id){
+    sfeerObject(id).cats.forEach(function(catNaam){
+      CATS.filter(function(c){ return c.naam === catNaam; }).forEach(function(c){
+        c.lijst.forEach(function(t){
+          if(!gezien[t]){ gezien[t] = true; POEL.sfeer.push({tekst:t, gebied:c.gebied, cat:c.naam}); }
+        });
+      });
+    });
+  });
+}
+function actievePrompts(){
+  const eigen = [];
+  gekozenSfeer.forEach(function(id){ eigen.push.apply(eigen, sfeerObject(id).prompts); });
+  return eigen.concat(PROMPTS);
+}
+function tekenSfeer(){
+  const doos = document.getElementById('sferen');
+  doos.innerHTML = '';
+  SFEREN.forEach(function(s){
+    const k = document.createElement('button');
+    k.className = 'sfeer' + (gekozenSfeer.indexOf(s.id) >= 0 ? ' aan' : '');
+    k.innerHTML = '<span class="sfeer-naam"><span class="bol" style="background:' + s.kleur + '"></span>' +
+      s.naam + '</span><span class="sfeer-regel">' + s.regel + '</span>';
+    k.addEventListener('click', function(){
+      const i = gekozenSfeer.indexOf(s.id);
+      if(i >= 0){ gekozenSfeer.splice(i, 1); }
+      else {
+        if(gekozenSfeer.length >= 2){ gekozenSfeer.shift(); }
+        gekozenSfeer.push(s.id);
+      }
+      bouwSfeerPoel();
+      tekenSfeer();
+    });
+    doos.appendChild(k);
+  });
+  document.getElementById('sfeer-door').textContent = gekozenSfeer.length ? 'Verder →' : 'Kies er eerst één';
+  document.getElementById('sfeer-door').disabled = gekozenSfeer.length === 0;
+}
+
+function maakItem(tekst, gebied){
+  return {id: volgId++, tekst:tekst, gebied:gebied, bak:null, freq:null};
+}
+function reset(){
+  items = [];
+  volgId = 1;
+  geschiedenis = [];
+  gesloten = { dag:false, tetris:false, doel:false };
+  toegevoegdeIdeeen = new Set();
+  klaarGezegd = false;
+  bladzijde = 0;
+  promptNr = 0;
+  gekozenSfeer = [];
+  maandwoord = '';
+  meenemen = [];
+  loslaten = [];
+  meenemenGeplaatst = false;
+  document.getElementById('mee-tekst').value = '';
+  document.getElementById('los-tekst').value = '';
+  ankerId = null;
+  ankerMoment = '';
+  invulMoment = '';
+  journalPlek = '';
+  document.getElementById('koppel-eigen').value = '';
+  document.getElementById('link-doos').hidden = true;
+  POEL.sfeer = [];
+  actiefGebied = 'lichaam';
+  document.getElementById('maandwoord').value = '';
+  zetZoek('');
+  toonScherm('landen');
+  document.getElementById('lade').hidden = true;
+  document.getElementById('d-lade').hidden = true;
+  document.getElementById('knop-lade').textContent = 'Geen idee? Pak een ideetje ✨';
+  document.getElementById('dump-lade-knop').textContent = 'Geen idee? Pak een ideetje ✨';
+  tekenTerugblik();
+  teken();
+}
+
+function onbewerkt(){ return items.filter(function(i){ return i.bak === null; }); }
+function inBak(b){ return items.filter(function(i){ return i.bak === b; }); }
+function opSlot(b){ return gesloten[b] || inBak(b).length >= LIMIET[b]; }
+
+/* ---------- tekenen ---------- */
+function teken(){
+  tekenLade();
+  if(fase === 'landen'){ return; }
+  if(fase === 'terugblik'){ tekenTerugblik(); return; }
+  if(fase === 'scherp'){ tekenScherp(); return; }
+  if(fase === 'overzicht'){ tekenOverzicht(); return; }
+  if(fase === 'sfeer'){ tekenSfeer(); return; }
+  if(fase === 'dump'){ tekenDump(); return; }
+  if(fase === 'check'){ tekenCheck(); return; }
+
+  ['dag','tetris','doel'].forEach(function(b){
+    const n = inBak(b).length;
+    const max = n >= LIMIET[b];
+    document.getElementById('t-'+b).textContent = gesloten[b] ? n + ' · genoeg' : n + '/' + LIMIET[b];
+    let v = '';
+    for(let k=0;k<LIMIET[b];k++){ v += '<span class="vakje'+(k<n?' vol':'')+'"></span>'; }
+    document.getElementById('v-'+b).innerHTML = v;
+    const kaart = document.querySelector('.bak[data-bak="'+b+'"]');
+    kaart.classList.toggle('is-vol', max);
+    kaart.classList.toggle('is-dicht', gesloten[b] && !max);
+    const g = document.querySelector('.genoeg[data-genoeg="'+b+'"]');
+    g.classList.toggle('aan', gesloten[b]);
+    g.textContent = gesloten[b] ? 'Genoeg zo ✓' : 'Zo is het genoeg';
+    g.hidden = max && !gesloten[b];
+  });
+
+  const kTerug = document.getElementById('knop-terug');
+  kTerug.disabled = false;
+  kTerug.textContent = geschiedenis.length === 0 ? '← Terug naar je briefjes' : '← Oeps, terug';
+
+  let gevuld = 0, plekjes = 0;
+  ['dag','tetris','doel'].forEach(function(b){
+    const n = inBak(b).length;
+    gevuld += n;
+    plekjes += gesloten[b] ? n : LIMIET[b];
+  });
+  document.getElementById('totaal-regel').innerHTML =
+    '<b>' + gevuld + '</b> van de ' + plekjes + ' plekjes in je bundel gevuld';
+
+  const rij = onbewerkt();
+  if(rij.length === 0){
+    if(!klaarGezegd && gevuld < plekjes){ toonRuimte(); } else { toonEind(); }
+    return;
+  }
+  toonScherm('sorteer');
+
+  const it = rij[0];
+  document.getElementById('briefje-tekst').textContent = it.tekst;
+  document.getElementById('gebied-naam').textContent = GEBIEDEN[it.gebied].naam;
+  document.getElementById('gebied-bol').style.background = GEBIEDEN[it.gebied].kleur;
+  const totaal = items.length;
+  const gedaan = totaal - rij.length;
+  document.getElementById('teller').textContent = 'Briefje ' + (gedaan+1) + ' van ' + totaal;
+
+  const allesDicht = opSlot('dag') && opSlot('tetris') && opSlot('doel');
+  const allesMax = ['dag','tetris','doel'].every(function(b){ return inBak(b).length >= LIMIET[b]; });
+  let vraagTekst = 'Hoe vaak wil je dit doen, deze maand?';
+  if(allesMax){ vraagTekst = 'Alle ' + plekjes + ' plekjes zijn vergeven. De rest mag naar even niet, of ruil nog iets om.'; }
+  else if(allesDicht){ vraagTekst = 'Je bakjes zitten dicht. De rest mag naar even niet, of open een bakje weer.'; }
+  document.getElementById('vraag').textContent = vraagTekst;
+}
+
+/* ---------- sorteren ---------- */
+function sorteer(bak){
+  const rij = onbewerkt();
+  if(rij.length === 0) return;
+  const it = rij[0];
+
+  if(bak !== 'niet' && opSlot(bak)){ toonVol(bak, it); return; }
+
+  if(bak === 'tetris'){ vraagFrequentie(it); return; }
+
+  zet(it, bak, null);
+}
+
+function zet(it, bak, freq){
+  geschiedenis.push({id:it.id, bak:it.bak, freq:it.freq});
+  it.bak = bak;
+  it.freq = freq;
+  teken();
+}
+
+function terug(){
+  const laatste = geschiedenis.pop();
+  if(!laatste){ toonScherm('check'); teken(); return; }
+  const it = items.filter(function(i){ return i.id === laatste.id; })[0];
+  if(it){ it.bak = laatste.bak; it.freq = laatste.freq; }
+  klaarGezegd = false;
+  teken();
+}
+
+/* ---------- dialogen ---------- */
+const sluier = document.getElementById('sluier');
+const dialoog = document.getElementById('dialoog');
+function sluit(){ sluier.hidden = true; dialoog.innerHTML = ''; }
+sluier.addEventListener('click', function(e){ if(e.target === sluier) sluit(); });
+
+function vraagFrequentie(it){
+  dialoog.innerHTML =
+    '<h3>Hoe vaak, ongeveer?</h3>' +
+    '<p>Ruwe schatting is prima, je mag altijd minder doen.</p>' +
+    '<div class="freq-rij">' +
+      '<button class="freq" data-f="1">1x<small>Deze maand</small></button>' +
+      '<button class="freq" data-f="2">2x<small>Deze maand</small></button>' +
+      '<button class="freq" data-f="4">Wekelijks<small>4x deze maand</small></button>' +
+    '</div>' +
+    '<button class="klein-knopje" style="margin-top:16px" data-annuleer="1">Toch niet</button>';
+  sluier.hidden = false;
+  dialoog.querySelectorAll('.freq').forEach(function(k){
+    k.addEventListener('click', function(){
+      zet(it, 'tetris', parseInt(k.dataset.f,10));
+      sluit();
+    });
+  });
+  dialoog.querySelector('[data-annuleer]').addEventListener('click', sluit);
+}
+
+function toonVol(bak, it){
+  const zittend = inBak(bak);
+  const zelfDicht = gesloten[bak] && zittend.length < LIMIET[bak];
+  let html;
+
+  if(zelfDicht){
+    html = '<h3>Genoeg zo ☺️</h3><p>Je gaf zelf aan dat je ' + BAKNAAM[bak] +
+      ' vol genoeg is, met ' + zittend.length + '.</p>' +
+      '<p style="margin-top:10px;font-weight:600;color:var(--navy)">Wat doen we met &ldquo;' + veilig(it.tekst) + '&rdquo;?</p>' +
+      '<div class="freq-rij" style="margin-top:16px"><button class="freq" style="flex:1 1 100%" data-open="1">Toch nog eentje erbij<small>het bakje gaat weer open</small></button></div>';
+  } else {
+    html = '<h3>Vol ☺️</h3><p>Je ' + BAKNAAM[bak] + ' zit vol met ' + LIMIET[bak] +
+      '. Zoveel plekjes heb je in de bundel, meer wordt het niet.</p>' +
+      '<p style="margin-top:10px;font-weight:600;color:var(--navy)">Wil je iets ruilen voor &ldquo;' + veilig(it.tekst) + '&rdquo;?</p>';
+  }
+
+  if(zittend.length){
+    html += '<div class="wissel-lijst">';
+    zittend.forEach(function(z){
+      html += '<button class="wissel-item" data-ruil="'+z.id+'"><span>'+veilig(z.tekst)+'</span><span class="ruil">Ruilen →</span></button>';
+    });
+    html += '</div>';
+  }
+  html += '<button class="klein-knopje" style="margin-top:16px" data-annuleer="1">Laat maar, ander bakje</button>';
+  dialoog.innerHTML = html;
+  sluier.hidden = false;
+
+  const openKnop = dialoog.querySelector('[data-open]');
+  if(openKnop){
+    openKnop.addEventListener('click', function(){
+      gesloten[bak] = false;
+      sluit();
+      if(bak === 'tetris'){ vraagFrequentie(it); } else { zet(it, bak, null); }
+    });
+  }
+  dialoog.querySelectorAll('[data-ruil]').forEach(function(k){
+    k.addEventListener('click', function(){
+      const oud = items.filter(function(i){ return i.id === parseInt(k.dataset.ruil,10); })[0];
+      geschiedenis.push({id:oud.id, bak:oud.bak, freq:oud.freq});
+      oud.bak = 'niet'; oud.freq = null;
+      sluit();
+      if(bak === 'tetris'){ vraagFrequentie(it); } else { zet(it, bak, null); }
+    });
+  });
+  dialoog.querySelector('[data-annuleer]').addEventListener('click', sluit);
+}
+
+function mv(n, enkel, meer){ return n + ' ' + (n === 1 ? enkel : meer); }
+function veilig(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ---------- ideeënlade ---------- */
+const PER_KEER = 8;
+let zoek = '';
+let bladzijde = 0;
+
+function selectie(){
+  const q = zoek.trim().toLowerCase();
+  if(q.length >= 2){
+    const treffers = ALLES.filter(function(i){ return i.tekst.toLowerCase().indexOf(q) >= 0; });
+    return {lijst: treffers.slice(0, 16), totaal: treffers.length, zoekend: true};
+  }
+  const poel = POEL[actiefGebied] || [];
+  const start = poel.length ? (bladzijde * PER_KEER) % poel.length : 0;
+  const uit = [];
+  for(let k = 0; k < Math.min(PER_KEER, poel.length); k++){ uit.push(poel[(start + k) % poel.length]); }
+  return {lijst: uit, totaal: poel.length, zoekend: false};
+}
+
+function tekenLade(){
+  const sel = selectie();
+
+  [['tabs','ideeen','lade-mini','knop-meer'],
+   ['r-tabs','r-ideeen','r-lade-mini','r-knop-meer'],
+   ['d-tabs','d-ideeen','d-lade-mini','d-knop-meer']].forEach(function(ids){
+    const tabs = document.getElementById(ids[0]);
+    const doos = document.getElementById(ids[1]);
+    const mini = document.getElementById(ids[2]);
+    const meer = document.getElementById(ids[3]);
+    if(!tabs || !doos) return;
+
+    tabs.innerHTML = '';
+    const rijtje = (gekozenSfeer.length ? ['sfeer'] : []).concat(Object.keys(GEBIEDEN));
+    rijtje.forEach(function(g){
+      const b = document.createElement('button');
+      b.className = 'tab' + (g === actiefGebied ? ' actief' : '');
+      b.textContent = g === 'sfeer' ? '✨ Bij jouw sfeer' : GEBIEDEN[g].naam;
+      b.addEventListener('click', function(){
+        actiefGebied = g; bladzijde = 0; zetZoek('');
+      });
+      tabs.appendChild(b);
+    });
+
+    doos.innerHTML = '';
+    if(sel.zoekend && sel.lijst.length === 0){
+      const p = document.createElement('p');
+      p.className = 'geen-treffer';
+      p.textContent = 'Niks gevonden. Tik op Erbij om het als je eigen briefje toe te voegen.';
+      doos.appendChild(p);
+    }
+    sel.lijst.forEach(function(idee){
+      const b = document.createElement('button');
+      const al = toegevoegdeIdeeen.has(idee.tekst);
+      b.className = 'idee' + (al ? ' toegevoegd' : '');
+      b.innerHTML = (al ? veilig(idee.tekst) + ' ✓' : '+ ' + veilig(idee.tekst)) +
+        (sel.zoekend ? '<span class="idee-cat">' + veilig(idee.cat) + '</span>' : '');
+      if(!al){
+        b.addEventListener('click', function(){
+          items.push(maakItem(idee.tekst, idee.gebied));
+          toegevoegdeIdeeen.add(idee.tekst);
+          klaarGezegd = false;
+          zetZoek('');
+          teken();
+        });
+      }
+      doos.appendChild(b);
+    });
+
+    if(meer){ meer.hidden = sel.zoekend || sel.totaal <= PER_KEER; }
+    if(mini){
+      mini.textContent = sel.zoekend
+        ? sel.totaal + ' gevonden' + (sel.totaal > 16 ? ', eerste 16 getoond' : '')
+        : Math.min(PER_KEER, sel.totaal) + ' van de ' + sel.totaal + ' ideetjes uit de blog';
+    }
+  });
+}
+
+function zetZoek(waarde){
+  zoek = waarde;
+  ['eigen-tekst','r-eigen-tekst','dump-tekst'].forEach(function(id){
+    const v = document.getElementById(id);
+    if(v && v.value !== waarde) v.value = waarde;
+  });
+  tekenLade();
+}
+
+/* ---------- eindscherm ---------- */
+/* ---------- stap 4: braindump ---------- */
+function tekenDump(){
+  const vragen = actievePrompts();
+  document.getElementById('prompt-tekst').textContent = vragen[promptNr % vragen.length];
+
+  const regel = document.getElementById('sfeer-regel');
+  if(gekozenSfeer.length || maandwoord){
+    const stukjes = [];
+    if(gekozenSfeer.length) stukjes.push('Jouw sfeer: ' + veilig(sfeerNamen()));
+    if(maandwoord) stukjes.push('Woord: ' + veilig(maandwoord));
+    regel.innerHTML = '<span class="sfeer-chip">' + stukjes.join(' · ') +
+      ' <button type="button" data-sfeer-terug="1">Wijzig</button></span>';
+    const k = regel.querySelector('[data-sfeer-terug]');
+    if(k) k.addEventListener('click', function(){ toonScherm('sfeer'); teken(); });
+  } else {
+    regel.innerHTML = '';
+  }
+
+  const doos = document.getElementById('dump-lijst');
+  doos.innerHTML = '';
+  items.forEach(function(it){
+    const chip = document.createElement('span');
+    chip.className = 'brief-chip';
+    chip.innerHTML = '<span class="bol" style="background:' + GEBIEDEN[it.gebied].kleur + '"></span>' +
+      '<span>' + veilig(it.tekst) + '</span>' +
+      (it.mee ? '<span class="brief-mee">Van vorige maand</span>' : '');
+    const x = document.createElement('button');
+    x.className = 'weg-x';
+    x.textContent = '×';
+    x.title = 'weghalen';
+    x.addEventListener('click', function(){
+      items = items.filter(function(a){ return a.id !== it.id; });
+      teken();
+    });
+    chip.appendChild(x);
+    doos.appendChild(chip);
+  });
+
+  const n = items.length;
+  document.getElementById('dump-teller').innerHTML = n === 0
+    ? 'Nog niks op tafel'
+    : '<b>' + n + '</b> briefje' + (n === 1 ? '' : 's') + ' op tafel' +
+      (n > 22 ? ', ruim genoeg, straks kiezen we er 22 uit' : '');
+  document.getElementById('dump-door').disabled = n === 0;
+}
+
+/* ---------- stap 4b: even checken ---------- */
+function tekenCheck(){
+  const doos = document.getElementById('check-groepen');
+  doos.innerHTML = '';
+  const telling = {};
+  Object.keys(GEBIEDEN).forEach(function(g){ telling[g] = 0; });
+
+  Object.keys(GEBIEDEN).forEach(function(g){
+    const inGebied = items.filter(function(i){ return i.gebied === g; });
+    telling[g] = inGebied.length;
+    if(!inGebied.length) return;
+
+    const groep = document.createElement('div');
+    groep.className = 'groep';
+    groep.innerHTML = '<div class="groep-kop"><span class="bol" style="background:' + GEBIEDEN[g].kleur + '"></span>' +
+      GEBIEDEN[g].naam + ' · ' + inGebied.length + '</div>';
+    const rij = document.createElement('div');
+    rij.className = 'briefjes';
+    inGebied.forEach(function(it){
+      const chip = document.createElement('button');
+      chip.className = 'brief-chip kies';
+      chip.innerHTML = '<span class="bol" style="background:' + GEBIEDEN[it.gebied].kleur + '"></span>' +
+        '<span>' + veilig(it.tekst) + '</span>';
+      chip.addEventListener('click', function(){ vraagGebied(it); });
+      rij.appendChild(chip);
+    });
+    groep.appendChild(rij);
+    doos.appendChild(groep);
+  });
+
+  const totaal = items.length;
+  const voorJezelf = telling.mezelf + telling.rust;
+  const sig = document.getElementById('check-signaal');
+  let grootste = 'huis';
+  Object.keys(telling).forEach(function(g){ if(telling[g] > telling[grootste]) grootste = g; });
+
+  if(totaal === 0){
+    sig.textContent = 'Nog geen briefjes.';
+    sig.className = 'signaal';
+  } else if(voorJezelf === 0){
+    sig.textContent = 'Je hoofd zit vol met regelwerk en zorgen voor anderen, en er staat nog niks voor jezelf op tafel. Wil je nog eentje toevoegen?';
+    sig.className = 'signaal let-op';
+  } else if(telling[grootste] / totaal > 0.6){
+    sig.textContent = 'Het gaat vooral over ' + GEBIEDEN[grootste].naam.toLowerCase() + ' deze maand. Bewust gekozen, of is dat wat het hardst riep?';
+    sig.className = 'signaal let-op';
+  } else {
+    sig.textContent = 'Mooi verdeeld, met ' + voorJezelf + ' briefje' + (voorJezelf === 1 ? '' : 's') + ' dat over rust of over jou gaat.';
+    sig.className = 'signaal';
+  }
+}
+
+function vraagGebied(it){
+  let html = '<h3>Waar hoort dit bij?</h3><p>' + veilig(it.tekst) + '</p><div class="wissel-lijst">';
+  Object.keys(GEBIEDEN).forEach(function(g){
+    html += '<button class="wissel-item" data-gebied="' + g + '">' +
+      '<span><span class="bol" style="display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;background:' +
+      GEBIEDEN[g].kleur + '"></span>' + GEBIEDEN[g].naam + '</span>' +
+      (g === it.gebied ? '<span class="ruil">Nu</span>' : '') + '</button>';
+  });
+  html += '</div><button class="klein-knopje" style="margin-top:16px" data-annuleer="1">Laat maar</button>';
+  dialoog.innerHTML = html;
+  sluier.hidden = false;
+  dialoog.querySelectorAll('[data-gebied]').forEach(function(k){
+    k.addEventListener('click', function(){
+      it.gebied = k.dataset.gebied;
+      sluit();
+      teken();
+    });
+  });
+  dialoog.querySelector('[data-annuleer]').addEventListener('click', sluit);
+}
+
+/* ---------- stap 2: terugblik ---------- */
+function tekenTerugblik(){
+  [['mee-lijst', meenemen, true], ['los-lijst', loslaten, false]].forEach(function(set){
+    const doos = document.getElementById(set[0]);
+    const lijst = set[1];
+    doos.innerHTML = '';
+    lijst.forEach(function(tekst, k){
+      const chip = document.createElement('span');
+      chip.className = 'brief-chip' + (set[2] ? '' : ' losgelaten');
+      chip.innerHTML = '<span>' + veilig(tekst) + '</span>';
+      const x = document.createElement('button');
+      x.className = 'weg-x';
+      x.textContent = '×';
+      x.addEventListener('click', function(){ lijst.splice(k, 1); teken(); });
+      chip.appendChild(x);
+      doos.appendChild(chip);
+    });
+  });
+  document.getElementById('terug-door').textContent =
+    (meenemen.length || loslaten.length) ? 'Verder →' : 'Verder, niks te melden →';
+}
+
+/* de meegenomen gewoontes worden pas briefjes als de sfeer bekend is,
+   want die sfeer bepaalt mee waar een briefje landt */
+function plaatsMeenemen(){
+  if(meenemenGeplaatst) return;
+  meenemen.forEach(function(t){
+    const it = maakItem(t, raadGebied(t));
+    it.mee = true;
+    items.push(it);
+  });
+  meenemenGeplaatst = true;
+}
+
+/* ---------- stap 6: scherpstellen ---------- */
+function keuzeRij(doosId, opties, huidige, bijKlik){
+  const doos = document.getElementById(doosId);
+  doos.innerHTML = '';
+  opties.forEach(function(o){
+    const k = document.createElement('button');
+    k.className = 'keuze' + (o.waarde === huidige ? ' aan' : '');
+    k.textContent = o.label;
+    k.addEventListener('click', function(){
+      bijKlik(o.waarde === huidige ? '' : o.waarde);
+      teken();
+    });
+    doos.appendChild(k);
+  });
+}
+
+function tekenScherp(){
+  const dag = inBak('dag');
+  document.getElementById('blok-anker').hidden = dag.length === 0;
+
+  keuzeRij('anker-keuze',
+    dag.map(function(i){ return {waarde:i.id, label:i.tekst}; }),
+    ankerId,
+    function(v){ ankerId = v === '' ? null : v; if(!ankerId) ankerMoment = ''; });
+
+  document.getElementById('anker-koppel').hidden = !ankerId;
+  keuzeRij('koppel-keuze',
+    KOPPELMOMENTEN.map(function(t){ return {waarde:t, label:t}; }),
+    ankerMoment,
+    function(v){ ankerMoment = v; document.getElementById('koppel-eigen').value = ''; });
+
+  keuzeRij('invul-keuze',
+    INVULMOMENTEN.map(function(t){ return {waarde:t, label:t}; }),
+    invulMoment,
+    function(v){ invulMoment = v; });
+
+  keuzeRij('plek-keuze',
+    PLEKKEN.map(function(t){ return {waarde:t, label:t}; }),
+    journalPlek,
+    function(v){ journalPlek = v; });
+}
+
+/* ---------- stap 7: maandoverzicht ---------- */
+function ovRegel(it, extra, anker){
+  const r = document.createElement('div');
+  r.className = 'ov-regel';
+  let html = '<span class="bol" style="background:' + GEBIEDEN[it.gebied].kleur + '"></span>' +
+    '<span>' + veilig(it.tekst) + (anker ? '<span class="ov-anker">⭐ ' + veilig(anker) + '</span>' : '') + '</span>';
+  if(extra){ html += '<span class="ov-mini">' + veilig(extra) + '</span>'; }
+  r.innerHTML = html;
+  return r;
+}
+
+function tekenOverzicht(){
+  const dag = inBak('dag'), tetris = inBak('tetris'), doel = inBak('doel');
+
+  document.getElementById('ov-woord').textContent =
+    maandwoord ? maandwoord : (gekozenSfeer.length ? sfeerNamen() : 'Je maand');
+  const stukjes = [];
+  if(maandwoord && gekozenSfeer.length) stukjes.push('Sfeer: ' + sfeerNamen().toLowerCase());
+  stukjes.push(mv(dag.length, 'gewoonte', 'gewoontes') + ', ' + tetris.length + ' in je tetris, ' + mv(doel.length, 'maanddoel', 'maanddoelen'));
+  document.getElementById('ov-onder').textContent = stukjes.join(' · ');
+
+  const dDag = document.getElementById('ov-dag');
+  dDag.innerHTML = '';
+  if(!dag.length){ dDag.innerHTML = '<div class="leeg">Deze maand geen dagelijkse gewoonte.</div>'; }
+  dag.forEach(function(i){
+    dDag.appendChild(ovRegel(i, '', (i.id === ankerId && ankerMoment) ? ankerMoment : (i.id === ankerId ? 'Je belangrijkste' : '')));
+  });
+
+  const dTet = document.getElementById('ov-tetris');
+  dTet.innerHTML = '';
+  if(!tetris.length){ dTet.innerHTML = '<div class="leeg">Leeg raster deze maand.</div>'; }
+  tetris.forEach(function(i){ dTet.appendChild(ovRegel(i, i.freq + 'x', '')); });
+
+  const dDoel = document.getElementById('ov-doel');
+  dDoel.innerHTML = '';
+  if(!doel.length){ dDoel.innerHTML = '<div class="leeg">Geen maanddoel deze keer.</div>'; }
+  doel.forEach(function(i){ dDoel.appendChild(ovRegel(i, '', '')); });
+
+  const afs = document.getElementById('ov-afspraken');
+  afs.innerHTML = '';
+  const regels = [];
+  if(invulMoment) regels.push(['Invullen', invulMoment]);
+  if(journalPlek) regels.push(['Je journal ligt', journalPlek]);
+  regels.forEach(function(r){
+    const d = document.createElement('div');
+    d.className = 'ov-regel';
+    d.innerHTML = '<span>' + r[0] + '</span><span class="ov-mini">' + veilig(r[1]) + '</span>';
+    afs.appendChild(d);
+  });
+  document.getElementById('ov-afspraken-blok').hidden = regels.length === 0;
+
+  document.getElementById('ov-sfeerblok').hidden = !gekozenSfeer.length;
+  if(gekozenSfeer.length){
+    document.getElementById('ov-code').textContent = sfeerNamen().toUpperCase();
+    document.getElementById('ov-code-uitleg').textContent =
+      'Deel dat in de Club, dan zie je wie deze maand hetzelfde koos.';
+  }
+}
+
+/* ---------- bewaren in een link ---------- */
+function maakLink(){
+  const pakket = {
+    s: gekozenSfeer,
+    w: maandwoord,
+    a: ankerId, am: ankerMoment, iv: invulMoment, pl: journalPlek,
+    i: items.filter(function(i){ return i.bak && i.bak !== 'niet'; })
+            .map(function(i){ return [i.id, i.tekst, i.gebied, i.bak, i.freq]; })
+  };
+  const code = btoa(unescape(encodeURIComponent(JSON.stringify(pakket))));
+  return location.href.split('#')[0] + '#m=' + code;
+}
+
+function leesLink(){
+  if(location.hash.indexOf('#m=') !== 0) return false;
+  try {
+    const pakket = JSON.parse(decodeURIComponent(escape(atob(location.hash.slice(3)))));
+    gekozenSfeer = pakket.s || [];
+    maandwoord = pakket.w || '';
+    ankerId = pakket.a || null;
+    ankerMoment = pakket.am || '';
+    invulMoment = pakket.iv || '';
+    journalPlek = pakket.pl || '';
+    items = (pakket.i || []).map(function(r){
+      return {id:r[0], tekst:r[1], gebied:r[2], bak:r[3], freq:r[4]};
+    });
+    volgId = items.reduce(function(m, i){ return Math.max(m, i.id); }, 0) + 1;
+    bouwSfeerPoel();
+    toonScherm('overzicht');
+    teken();
+    return true;
+  } catch(e){ return false; }
+}
+
+function toonRuimte(){
+  toonScherm('ruimte');
+  const vrij = [];
+  [['dag','je habittracker'],['tetris','je adult tetris'],['doel','je maanddoelen']].forEach(function(p){
+    if(gesloten[p[0]]) return;
+    const over = LIMIET[p[0]] - inBak(p[0]).length;
+    if(over > 0){ vrij.push(over + ' in ' + p[1]); }
+  });
+  const zin = vrij.length > 1
+    ? vrij.slice(0, -1).join(', ') + ' en ' + vrij[vrij.length-1]
+    : vrij[0];
+  document.getElementById('ruimte-teller').textContent = 'Nog ruimte voor ' + zin;
+  tekenLade();
+}
+
+function toonEind(){
+  toonScherm('eind');
+
+  const dag = inBak('dag'), tetris = inBak('tetris'), doel = inBak('doel');
+
+  /* elke dag */
+  document.getElementById('mini-dag').textContent = gesloten.dag
+    ? dag.length + ', genoeg zo' : dag.length + ' van maximaal ' + LIMIET.dag;
+  const ld = document.getElementById('lijst-dag');
+  ld.innerHTML = '';
+  if(dag.length === 0){ ld.innerHTML = '<div class="leeg">Nog niks. Ook goed, een maand zonder dagelijkse gewoonte mag.</div>'; }
+  dag.forEach(function(i){ ld.appendChild(regel(i, true)); });
+  const mDag = document.getElementById('meter-dag');
+  mDag.querySelector('i').style.width = (dag.length/LIMIET.dag*100) + '%';
+  mDag.classList.toggle('druk', dag.length >= LIMIET.dag);
+  document.getElementById('signaal-dag').textContent = tekstDag(dag.length);
+  document.getElementById('signaal-dag').className = 'signaal' +
+    (dag.length >= LIMIET.dag - 1 && !gesloten.dag ? ' let-op' : '');
+
+  /* tetris */
+  const momenten = tetris.reduce(function(s,i){ return s + (i.freq||1); }, 0);
+  document.getElementById('mini-tetris').textContent = mv(tetris.length, 'briefje', 'briefjes') + ', ' + mv(momenten, 'momentje', 'momentjes');
+  const lt = document.getElementById('lijst-tetris');
+  lt.innerHTML = '';
+  if(tetris.length === 0){ lt.innerHTML = '<div class="leeg">Leeg raster. Lekker rustig.</div>'; }
+  tetris.forEach(function(i){ lt.appendChild(regel(i, false)); });
+  const raster = document.getElementById('raster');
+  raster.innerHTML = '';
+  for(let k=0;k<28;k++){
+    const d = document.createElement('div');
+    d.className = 'blok' + (k < momenten ? ' vol' : '');
+    raster.appendChild(d);
+  }
+  for(let k=28;k<momenten;k++){
+    const d = document.createElement('div');
+    d.className = 'blok over';
+    raster.appendChild(d);
+  }
+  const st = document.getElementById('signaal-tetris');
+  st.textContent = tekstTetris(tetris.length, momenten);
+  st.className = 'signaal' + (momenten > 20 ? ' let-op' : '');
+
+  /* doelen */
+  document.getElementById('mini-doel').textContent = gesloten.doel
+    ? doel.length + ', genoeg zo' : doel.length + ' van maximaal ' + LIMIET.doel;
+  const lo = document.getElementById('lijst-doel');
+  lo.innerHTML = '';
+  if(doel.length === 0){ lo.innerHTML = '<div class="leeg">Geen maanddoel deze keer.</div>'; }
+  doel.forEach(function(i){ lo.appendChild(regel(i, false)); });
+
+  tekenBalans(dag.concat(tetris, doel));
+
+  const totaalGekozen = dag.length + tetris.length + doel.length;
+  document.getElementById('eind-titel').textContent = totaalGekozen === 0 ? 'Een lege maand ☁️' : 'Gesorteerd! 🥳';
+  const woord = document.getElementById('eind-woord');
+  const kopje = maandwoord || (gekozenSfeer.length ? sfeerNamen() : '');
+  woord.hidden = !kopje;
+  woord.textContent = kopje;
+
+  const plekjesTotaal = LIMIET.dag + LIMIET.tetris + LIMIET.doel;
+  document.getElementById('eind-onder').textContent = totaalGekozen === 0
+    ? 'Alles op even niet gezet. Dat mag, sommige maanden vragen daarom.'
+    : 'Dit wordt jouw maand, ' + totaalGekozen + ' van de ' + plekjesTotaal + ' plekjes gevuld.';
+}
+
+function regel(it, metDagen){
+  const r = document.createElement('div');
+  r.className = 'regel';
+  const bol = '<span style="width:9px;height:9px;border-radius:50%;flex:0 0 auto;background:'+GEBIEDEN[it.gebied].kleur+'"></span>';
+  let extra = '';
+  if(metDagen){
+    let v = '';
+    for(let k=0;k<31;k++){ v += '<span class="dagvakje"></span>'; }
+    extra = '<span class="dagvakjes">'+v+'</span>';
+  } else if(it.freq){
+    extra = '<span class="mini" style="font-size:.78rem;font-weight:700;color:var(--grijs-licht)">'+it.freq+'x</span>';
+  }
+  r.innerHTML = bol + '<span class="naam">'+veilig(it.tekst)+'</span>' + extra +
+    '<button class="weg" title="terug naar even niet">×</button>';
+  r.querySelector('.weg').addEventListener('click', function(){
+    geschiedenis.push({id:it.id, bak:it.bak, freq:it.freq});
+    it.bak = 'niet'; it.freq = null;
+    ['dag','tetris','doel'].forEach(function(b){
+      const n = inBak(b).length;
+      document.getElementById('t-'+b).textContent = n + '/' + LIMIET[b];
+    });
+    toonEind();
+  });
+  return r;
+}
+
+function tekstDag(n){
+  if(n === 0) return 'Geen dagelijkse gewoonte deze maand. Prima, je tracker mag ook gewoon een kleurplaat zijn.';
+  if(gesloten.dag) return n + ' gewoonte' + (n===1?'':'s') + ', en je zei zelf dat dit genoeg is. Fijn zo.';
+  if(n <= 3) return n + ' elke dag, dat hou je makkelijk vol. Precies de bedoeling.';
+  if(n <= 6) return n + ' gewoontes elke dag, dat past nog fijn op je pagina.';
+  if(n < LIMIET.dag) return n + ' gewoontes, je pagina zit bijna vol. Voelt dat nog licht?';
+  return 'Alle ' + LIMIET.dag + ' vakjes vol. Kijk morgenochtend nog eens of dit er echt allemaal elke dag bij kan...';
+}
+
+function tekstTetris(aantal, momenten){
+  if(aantal === 0) return 'Niks in het raster. Ook een keuze.';
+  if(gesloten.tetris && momenten <= 20) return mv(aantal, 'briefje', 'briefjes') + ', ' + mv(momenten, 'momentje', 'momentjes') + ', en je zei zelf dat dit genoeg is. Fijn zo.';
+  if(momenten <= 3) return mv(momenten, 'momentje', 'momentjes') + ' deze maand, lekker rustig.';
+  if(momenten <= 8) return mv(momenten, 'momentje', 'momentjes') + ' verspreid over de maand, dat is ongeveer twee per week.';
+  if(momenten <= 20) return mv(momenten, 'momentje', 'momentjes') + '. Past netjes in je maand, met ruimte over voor de dingen die tussendoor komen.';
+  return mv(momenten, 'momentje', 'momentjes') + ', dat is bijna elke dag eentje. Klopt dat met hoe jouw maand eruitziet?';
+}
+
+function tekenBalans(gekozen){
+  const balk = document.getElementById('balans');
+  const leg = document.getElementById('balans-legenda');
+  balk.innerHTML = ''; leg.innerHTML = '';
+
+  const telling = {};
+  Object.keys(GEBIEDEN).forEach(function(g){ telling[g] = 0; });
+  gekozen.forEach(function(i){ telling[i.gebied]++; });
+  const totaal = gekozen.length;
+
+  if(totaal === 0){
+    balk.innerHTML = '';
+    document.getElementById('signaal-balans').textContent = 'Nog niks gekozen, dus ook nog niks uit balans ☺️';
+    document.getElementById('signaal-balans').className = 'signaal';
+    return;
+  }
+
+  Object.keys(GEBIEDEN).forEach(function(g){
+    if(telling[g] === 0) return;
+    const i = document.createElement('i');
+    i.style.width = (telling[g]/totaal*100) + '%';
+    i.style.background = GEBIEDEN[g].kleur;
+    balk.appendChild(i);
+    const s = document.createElement('span');
+    s.innerHTML = '<span class="bol" style="background:'+GEBIEDEN[g].kleur+'"></span>' + GEBIEDEN[g].naam + ' · ' + telling[g];
+    leg.appendChild(s);
+  });
+
+  const voorJezelf = telling.mezelf + telling.rust;
+  const gebiedenGevuld = Object.keys(telling).filter(function(g){ return telling[g] > 0; }).length;
+  let grootste = 'lichaam';
+  Object.keys(telling).forEach(function(g){ if(telling[g] > telling[grootste]) grootste = g; });
+
+  const sig = document.getElementById('signaal-balans');
+  if(voorJezelf === 0){
+    sig.textContent = 'Alles gaat over huis, gezin of lichaam, en niks over rust of over jou. Wil je er nog eentje voor jezelf bij, of is dat deze maand even zo?';
+    sig.className = 'signaal let-op';
+  } else if(telling[grootste] / totaal > 0.6){
+    sig.textContent = 'Je maand gaat vooral over ' + GEBIEDEN[grootste].naam.toLowerCase() + '. Bewust gekozen, of is dat wat het hardst riep?';
+    sig.className = 'signaal let-op';
+  } else if(gebiedenGevuld >= 3){
+    sig.textContent = 'Mooi verdeeld over ' + gebiedenGevuld + ' stukjes van je leven, met ' + voorJezelf + ' briefje' + (voorJezelf===1?'':'s') + ' puur voor jezelf. GENIET!';
+    sig.className = 'signaal';
+  } else {
+    sig.textContent = 'Een maand met een duidelijke focus, en er zit iets voor jezelf bij. Fijn zo.';
+    sig.className = 'signaal';
+  }
+}
+
+/* ---------- knoppen ---------- */
+document.querySelectorAll('[data-bak]').forEach(function(k){
+  k.addEventListener('click', function(e){
+    if(e.target.closest('.genoeg')) return;
+    sorteer(k.dataset.bak);
+  });
+  k.addEventListener('keydown', function(e){
+    if(e.target.closest('.genoeg')) return;
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); sorteer(k.dataset.bak); }
+  });
+});
+document.querySelectorAll('.genoeg').forEach(function(g){
+  g.addEventListener('click', function(e){
+    e.stopPropagation();
+    const b = g.dataset.genoeg;
+    gesloten[b] = !gesloten[b];
+    teken();
+  });
+});
+document.getElementById('knop-terug').addEventListener('click', terug);
+document.getElementById('knop-lade').addEventListener('click', function(){
+  const lade = document.getElementById('lade');
+  lade.hidden = !lade.hidden;
+  this.textContent = lade.hidden ? 'Geen idee? Pak een ideetje ✨' : 'Lade weer dicht';
+});
+[['knop-toevoegen','eigen-tekst'], ['r-knop-toevoegen','r-eigen-tekst']].forEach(function(paar){
+  const knop = document.getElementById(paar[0]);
+  const veld = document.getElementById(paar[1]);
+  if(!knop || !veld) return;
+  knop.addEventListener('click', function(){ voegEigenToe(veld); });
+  veld.addEventListener('keydown', function(e){ if(e.key === 'Enter') voegEigenToe(veld); });
+  veld.addEventListener('input', function(){ zetZoek(veld.value); });
+});
+['knop-meer','r-knop-meer','d-knop-meer'].forEach(function(id){
+  const k = document.getElementById(id);
+  if(k) k.addEventListener('click', function(){ bladzijde++; tekenLade(); });
+});
+function voegEigenToe(veld){
+  const t = veld.value.trim();
+  if(!t) return;
+  if(lijktOpProbleem(t)){ zetZoek(''); toonOmdraaien(t); return; }
+  voegBriefjeToe(t, raadGebied(t));
+}
+
+function voegBriefjeToe(tekst, gebied){
+  items.push(maakItem(tekst, gebied));
+  zetZoek('');
+  klaarGezegd = false;
+  teken();
+}
+
+/* ---------- probleem omdraaien naar iets doenbaars ---------- */
+function toonOmdraaien(tekst){
+  const suggesties = passendeGewoontes(tekst);
+  let html = '<h3>Even omdraaien ☺️</h3>' +
+    '<p>&ldquo;' + veilig(tekst) + '&rdquo;</p>' +
+    '<p style="margin-top:10px">Dat is meer iets wat niet lukt dan iets wat je gaat doen. ' +
+    'Op je tracker wil je een vakje kunnen inkleuren, dus wat zou hierbij helpen?</p>';
+
+  if(suggesties.length){
+    html += '<div class="wissel-lijst">';
+    suggesties.forEach(function(s, k){
+      html += '<button class="wissel-item" data-kies="' + k + '"><span>' + veilig(s.tekst) + '</span>' +
+        '<span class="ruil">Kies →</span></button>';
+    });
+    html += '</div>';
+  }
+
+  html += '<div class="eigen" style="margin-top:16px;margin-bottom:0">' +
+    '<input type="text" id="draai-tekst" placeholder="Of typ het zelf...">' +
+    '<button class="knop-goud" id="draai-erbij">Erbij</button></div>' +
+    '<button class="klein-knopje" style="margin-top:14px" data-ruw="1">Zet ’m er toch zo op</button>';
+
+  dialoog.innerHTML = html;
+  sluier.hidden = false;
+
+  const veld = dialoog.querySelector('#draai-tekst');
+  if(veld) setTimeout(function(){ veld.focus(); }, 50);
+
+  dialoog.querySelectorAll('[data-kies]').forEach(function(k){
+    k.addEventListener('click', function(){
+      const s = suggesties[parseInt(k.dataset.kies, 10)];
+      sluit();
+      voegBriefjeToe(s.tekst, s.gebied);
+    });
+  });
+  function eigenDraai(){
+    const nieuw = veld.value.trim();
+    if(!nieuw) return;
+    sluit();
+    voegBriefjeToe(nieuw, raadGebied(nieuw));
+  }
+  dialoog.querySelector('#draai-erbij').addEventListener('click', eigenDraai);
+  veld.addEventListener('keydown', function(e){ if(e.key === 'Enter') eigenDraai(); });
+  dialoog.querySelector('[data-ruw]').addEventListener('click', function(){
+    sluit();
+    voegBriefjeToe(tekst, raadGebied(tekst));
+  });
+}
+
+/* ---------- knoppen van stap 1 en 2 ---------- */
+document.getElementById('land-door').addEventListener('click', function(){
+  toonScherm('terugblik'); teken();
+});
+document.getElementById('land-uitleg').addEventListener('click', function(){
+  document.getElementById('knop-uitleg').click();
+});
+
+function voegTerugToe(veldId, lijst){
+  const veld = document.getElementById(veldId);
+  const t = veld.value.trim();
+  if(!t) return;
+  lijst.push(t);
+  veld.value = '';
+  teken();
+}
+document.getElementById('mee-erbij').addEventListener('click', function(){ voegTerugToe('mee-tekst', meenemen); });
+document.getElementById('mee-tekst').addEventListener('keydown', function(e){ if(e.key === 'Enter') voegTerugToe('mee-tekst', meenemen); });
+document.getElementById('los-erbij').addEventListener('click', function(){ voegTerugToe('los-tekst', loslaten); });
+document.getElementById('los-tekst').addEventListener('keydown', function(e){ if(e.key === 'Enter') voegTerugToe('los-tekst', loslaten); });
+
+document.getElementById('terug-door').addEventListener('click', function(){
+  toonScherm('sfeer'); teken();
+});
+document.getElementById('terug-over').addEventListener('click', function(){
+  meenemen = []; loslaten = [];
+  toonScherm('sfeer'); teken();
+});
+
+/* ---------- knoppen van stap 3 ---------- */
+document.getElementById('maandwoord').addEventListener('input', function(){
+  maandwoord = this.value.trim();
+});
+document.getElementById('sfeer-door').addEventListener('click', function(){
+  if(!gekozenSfeer.length) return;
+  actiefGebied = 'sfeer';
+  bladzijde = 0;
+  plaatsMeenemen();
+  toonScherm('dump');
+  teken();
+});
+document.getElementById('sfeer-over').addEventListener('click', function(){
+  gekozenSfeer = [];
+  POEL.sfeer = [];
+  actiefGebied = 'lichaam';
+  plaatsMeenemen();
+  toonScherm('dump');
+  teken();
+});
+
+/* ---------- knoppen van stap 4 ---------- */
+const dumpVeld = document.getElementById('dump-tekst');
+document.getElementById('dump-erbij').addEventListener('click', function(){ voegEigenToe(dumpVeld); });
+dumpVeld.addEventListener('keydown', function(e){ if(e.key === 'Enter') voegEigenToe(dumpVeld); });
+dumpVeld.addEventListener('input', function(){ zetZoek(dumpVeld.value); });
+
+document.getElementById('prompt-volgende').addEventListener('click', function(){
+  promptNr++; tekenDump();
+});
+document.getElementById('dump-lade-knop').addEventListener('click', function(){
+  const lade = document.getElementById('d-lade');
+  lade.hidden = !lade.hidden;
+  this.textContent = lade.hidden ? 'Geen idee? Pak een ideetje ✨' : 'Lade weer dicht';
+});
+document.getElementById('dump-door').addEventListener('click', function(){
+  zetZoek('');
+  toonScherm('check');
+  teken();
+});
+document.getElementById('check-terug').addEventListener('click', function(){
+  toonScherm('dump');
+  teken();
+});
+document.getElementById('check-door').addEventListener('click', function(){
+  toonScherm('sorteer');
+  teken();
+});
+document.getElementById('knop-klaar').addEventListener('click', function(){
+  klaarGezegd = true;
+  teken();
+});
+document.getElementById('knop-opnieuw').addEventListener('click', reset);
+document.getElementById('knop-opnieuw2').addEventListener('click', function(){
+  if(location.hash){ location.hash = ''; }
+  reset();
+});
+
+/* ---------- knoppen van stap 6 en 7 ---------- */
+document.getElementById('knop-scherp').addEventListener('click', function(){
+  toonScherm('scherp'); teken();
+});
+document.getElementById('scherp-terug').addEventListener('click', function(){
+  toonScherm('eind'); teken();
+});
+document.getElementById('scherp-door').addEventListener('click', function(){
+  toonScherm('overzicht'); teken();
+  window.scrollTo(0, 0);
+});
+document.getElementById('koppel-eigen').addEventListener('input', function(){
+  ankerMoment = this.value.trim();
+  keuzeRij('koppel-keuze', KOPPELMOMENTEN.map(function(t){ return {waarde:t, label:t}; }), ankerMoment,
+    function(v){ ankerMoment = v; document.getElementById('koppel-eigen').value = ''; teken(); });
+});
+document.getElementById('knop-terug-eind').addEventListener('click', function(){
+  toonScherm('scherp'); teken();
+});
+document.getElementById('knop-print').addEventListener('click', function(){ window.print(); });
+document.getElementById('knop-link').addEventListener('click', function(){
+  const link = maakLink();
+  const doos = document.getElementById('link-doos');
+  const veld = document.getElementById('bewaar-link');
+  doos.hidden = false;
+  veld.value = link;
+  veld.select();
+  try {
+    const belofte = navigator.clipboard && navigator.clipboard.writeText(link);
+    if(belofte && belofte.catch){ belofte.catch(function(){}); }
+  } catch(e){ /* dan kopieert ze 'm zelf uit het veld */ }
+});
+
+document.getElementById('knop-uitleg').addEventListener('click', function(){
+  dialoog.innerHTML =
+    '<h3>Zo werkt het ☺️</h3>' +
+    '<p>In tien minuutjes zet je je maand op papier. Daarna schrijf je het over in je bundel.</p>' +
+    '<div style="margin-top:16px">' +
+      '<div class="uitleg-stap"><span class="uitleg-nr">1</span><span class="uitleg-tekst">Gooi alles op tafel wat in je hoofd zit' +
+        '<small>Elk dingetje wordt een briefje. Rommelig mag, sorteren doen we daarna.</small></span></div>' +
+      '<div class="uitleg-stap"><span class="uitleg-nr">2</span><span class="uitleg-tekst">Leg elk briefje op een stapeltje' +
+        '<small>Elke dag, een paar keer deze maand, of gewoon een voornemen.</small></span></div>' +
+      '<div class="uitleg-stap"><span class="uitleg-nr">3</span><span class="uitleg-tekst">De stapeltjes zijn je bundelpagina’s' +
+        '<small>8 in je habittracker, 8 in je adult tetris, 6 maanddoelen. Precies wat erop past.</small></span></div>' +
+      '<div class="uitleg-stap"><span class="uitleg-nr">4</span><span class="uitleg-tekst">Wat niet past gaat naar &ldquo;even niet&rdquo;' +
+        '<small>Dat is geen falen. Een halfvolle pagina mag, zeg gerust ergens &ldquo;zo is het genoeg&rdquo;.</small></span></div>' +
+    '</div>' +
+    '<p style="margin-top:14px">Er wordt niks opgeslagen, dus schrijf je maand over voor je het tabblad sluit.</p>' +
+    '<button class="klein-knopje" style="margin-top:16px" data-annuleer="1">Duidelijk, verder</button>';
+  sluier.hidden = false;
+  dialoog.querySelector('[data-annuleer]').addEventListener('click', sluit);
+});
+
+/* ---------- het slot ---------- */
+function schoonCode(t){ return String(t || '').toLowerCase().replace(/\s+/g, ''); }
+function codeKlopt(t){
+  const s = schoonCode(t);
+  if(!s) return false;
+  return TOEGANGSCODES.some(function(c){ return schoonCode(c) === s; });
+}
+function onthoudCode(t){
+  try { localStorage.setItem('okido-maandcode', schoonCode(t)); } catch(e){ /* privémodus, dan vraagt hij het opnieuw */ }
+}
+function bewaardeCode(){
+  try { return localStorage.getItem('okido-maandcode'); } catch(e){ return null; }
+}
+function naarBinnen(){
+  tekenLade();
+  if(!leesLink()){ reset(); }
+}
+document.getElementById('code-knop').addEventListener('click', probeerCode);
+document.getElementById('code-veld').addEventListener('keydown', function(e){
+  if(e.key === 'Enter') probeerCode();
+});
+function probeerCode(){
+  const veld = document.getElementById('code-veld');
+  const fout = document.getElementById('slot-fout');
+  if(codeKlopt(veld.value)){
+    onthoudCode(veld.value);
+    fout.hidden = true;
+    naarBinnen();
+    return;
+  }
+  fout.hidden = false;
+  fout.textContent = veld.value.trim()
+    ? 'Die code klopt niet, kijk even in het clubbericht van deze maand.'
+    : 'Vul eerst je code in.';
+  veld.select();
+}
+
+/* de onthouden code wordt opnieuw gecontroleerd, dus zodra Trijntje
+   de code van de maand wisselt moet iedereen 'm opnieuw intikken */
+if(codeKlopt(bewaardeCode())){
+  naarBinnen();
+} else {
+  toonScherm('slot');
+  setTimeout(function(){ document.getElementById('code-veld').focus(); }, 60);
+}
+})();
+</script>
+</body>
+</html>
